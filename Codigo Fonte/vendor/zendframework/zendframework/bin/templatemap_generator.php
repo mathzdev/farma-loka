@@ -18,42 +18,41 @@ use Zend\Loader\StandardAutoloader;
  * --help|-h                    Get usage message
  * --library|-l [ <string> ]    Library to parse; if none provided, assumes
  *                              current directory
- * --view|-v [ <string> ]       View path to parse; if none provided, assumes
- *                              view as template directory
- * --extensions|-e [ <string> ] List of accepted file extensions (regex alternation
- *                              without parenthesis); default: *
  * --output|-o [ <string> ]     Where to write map file; if not provided,
  *                              assumes "template_map.php" in library directory
  * --append|-a                  Append to map file if it exists
  * --overwrite|-w               Whether or not to overwrite existing map file
  */
 
-// Setup/verify autoloading
-if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
-    // Local install
-    require __DIR__ . '/../vendor/autoload.php';
-} elseif (file_exists(getcwd() . '/vendor/autoload.php')) {
-    // Root project is current working directory
-    require getcwd() . '/vendor/autoload.php';
-} elseif (file_exists(__DIR__ . '/../../../autoload.php')) {
-    // Relative to composer install
-    require __DIR__ . '/../../../autoload.php';
+$zfLibraryPath = getenv('LIB_PATH') ? getenv('LIB_PATH') : __DIR__ . '/../library';
+if (is_dir($zfLibraryPath)) {
+    // Try to load StandardAutoloader from library
+    if (false === include($zfLibraryPath . '/Zend/Loader/StandardAutoloader.php')) {
+        echo 'Unable to locate autoloader via library; aborting' . PHP_EOL;
+        exit(2);
+    }
 } else {
-    fwrite(STDERR, "Unable to setup autoloading; aborting\n");
-    exit(2);
+    // Try to load StandardAutoloader from include_path
+    if (false === include('Zend/Loader/StandardAutoloader.php')) {
+        echo 'Unable to locate autoloader via include_path; aborting' . PHP_EOL;
+        exit(2);
+    }
 }
 
 $libraryPath = getcwd();
 $viewPath    = getcwd() . '/view';
 
+// Setup autoloading
+$loader = new StandardAutoloader(array('autoregister_zf' => true));
+$loader->register();
+
 $rules = array(
-    'help|h'            => 'Get usage message',
-    'library|l-s'       => 'Library to parse; if none provided, assumes current directory',
-    'view|v-s'          => 'View path to parse; if none provided, assumes view as template directory',
-    'extensions|e-s'    => 'List of accepted file extensions (regex alternation: *html, phtml|tpl); default: *',
-    'output|o-s'        => 'Where to write map file; if not provided, assumes "template_map.php" in library directory',
-    'append|a'          => 'Append to map file if it exists',
-    'overwrite|w'       => 'Whether or not to overwrite existing map file',
+    'help|h'      => 'Get usage message',
+    'library|l-s' => 'Library to parse; if none provided, assumes current directory',
+    'view|v-s'    => 'View path to parse; if none provided, assumes view as template directory',
+    'output|o-s'  => 'Where to write map file; if not provided, assumes "template_map.php" in library directory',
+    'append|a'    => 'Append to map file if it exists',
+    'overwrite|w' => 'Whether or not to overwrite existing map file',
 );
 
 try {
@@ -68,18 +67,6 @@ if ($opts->getOption('h')) {
     echo $opts->getUsageMessage();
     exit(0);
 }
-
-$fileExtensions = '*';
-if (isset($opts->e) && $opts->e != '*') {
-    if (!preg_match('/^(\*?[[:alnum:]]\*?+\|?)+$/', $opts->e)) {
-        echo 'Invalid extensions list specified. Expecting wildcard or alternation: *, *html, phtml|tpl' . PHP_EOL
-            . PHP_EOL;
-        echo $opts->getUsageMessage();
-        exit(2);
-    }
-    $fileExtensions = '(' . $opts->e . ')';
-}
-$fileExtensions = str_replace('*', '.*', $fileExtensions);
 
 $relativePathForMap = '';
 if (isset($opts->l)) {
@@ -183,8 +170,7 @@ $l = new RecursiveIteratorIterator($dirOrIterator);
 // template name => filename, where the filename is relative to the view path
 $map = new stdClass;
 foreach ($l as $file) {
-    /* @var $file SplFileInfo */
-    if (!$file->isFile() || !preg_match('/^' . $fileExtensions . '$/', $file->getExtension())) {
+    if (!$file->isFile()) {
         continue;
     }
     $filename  = str_replace($libraryPath . '/', '', str_replace(DIRECTORY_SEPARATOR, '/', $file->getPath()) . '/' . $file->getFilename());
@@ -196,57 +182,59 @@ foreach ($l as $file) {
     $map->{$mapName} = $filename;
 }
 
-// Create a file with the map.
+if ($appending) {
+    $content = var_export((array) $map, true) . ';';
 
-if ($appending && file_exists($output) && is_array(include $output)) {
-    // Append mode and the output file already exists: retrieve its
-    // content and merges with the new map
-    // Remove the last line as it is the end of the array, and we want to
-    // append our new templates
-    $content = file($output, FILE_IGNORE_NEW_LINES);
-    array_pop($content);
-    $content = implode(PHP_EOL, $content) . PHP_EOL;
+    // Prefix with __DIR__; modify the generated content
+    $content = preg_replace("#(=> ')#", "=> __DIR__ . '/", $content);
+
+    // Fix \' strings from injected DIRECTORY_SEPARATOR usage in iterator_apply op
+    $content = str_replace("\\'", "'", $content);
+
+    // Convert to an array and remove the first "array("
+    $content = explode("\n", $content);
+    array_shift($content);
+
+    // Load existing map file and remove the closing "bracket ");" from it
+    $existing = file($output, FILE_IGNORE_NEW_LINES);
+    array_pop($existing);
+
+    // Merge
+    $content = implode("\n", array_merge($existing, $content));
 } else {
-    // Write mode or the file does not exists: create a new file
+    // Create a file with the map.
     // Stupid syntax highlighters make separating < from PHP declaration necessary
-    $content = '<' . "?php" . PHP_EOL
-             . '// Generated by ZF2\'s ./bin/templatemap_generator.php'  . PHP_EOL
-             . 'return array(' . PHP_EOL;
+    $content = '<' . "?php\n"
+             . "// Generated by ZF2's ./bin/templatemap_generator.php\n"
+             . 'return ' . var_export((array) $map, true) . ';';
+
+    // Prefix with __DIR__; modify the generated content
+    $content = preg_replace("#(=> ')#", "=> __DIR__ . '/", $content);
+
+    // Fix \' strings from injected DIRECTORY_SEPARATOR usage in iterator_apply op
+    $content = str_replace("\\'", "'", $content);
 }
 
-// Process the template map as a string before inserting it to the output file
-
-$mapExport = var_export((array) $map, true);
-
-// Prefix with __DIR__
-$mapExport = preg_replace("#(=> ')#", "=> __DIR__ . '/", $mapExport);
-
-// Fix \' strings from injected DIRECTORY_SEPARATOR usage in iterator_apply op
-$mapExport = str_replace("\\'", "'", $mapExport);
-
 // Remove unnecessary double-backslashes
-$mapExport = str_replace('\\\\', '\\', $mapExport);
+$content = str_replace('\\\\', '\\', $content);
 
-// Remove "array ("
-$mapExport = str_replace('array (', '', $mapExport);
+// Exchange "array (" width "array("
+$content = str_replace('array (', 'array(', $content);
 
 // Align "=>" operators to match coding standard
-preg_match_all('(\n\s+([^=]+)=>)', $mapExport, $matches, PREG_SET_ORDER);
+preg_match_all('(\n\s+([^=]+)=>)', $content, $matches, PREG_SET_ORDER);
 $maxWidth = 0;
 
 foreach ($matches as $match) {
     $maxWidth = max($maxWidth, strlen($match[1]));
 }
 
-$mapExport = preg_replace_callback('(\n\s+([^=]+)=>)', function ($matches) use ($maxWidth) {
+$content = preg_replace_callback('(\n\s+([^=]+)=>)', function ($matches) use ($maxWidth) {
     return PHP_EOL . '    ' . $matches[1] . str_repeat(' ', $maxWidth - strlen($matches[1])) . '=>';
-}, $mapExport);
+}, $content);
 
-// Trim the content
-$mapExport = trim($mapExport, "\n");
-
-// Append the map to the file, close the array and write a new line
-$content .= $mapExport . ';' . PHP_EOL;
+// Make the file end by EOL
+$content = rtrim($content, "\n") . "\n";
 
 // Write the contents to disk
 file_put_contents($output, $content);
