@@ -51,6 +51,21 @@ return array(
                     ),
                 ),
             ),
+            'usuario' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/usuarios[/:action][/:id]',
+                    'constraints' => array(
+                        'controller' => 'Application\Controller\Usuario',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Usuario',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -93,7 +108,7 @@ return array(
         ),
     ),
     'translator' => array(
-        'locale' => 'en_US',
+        'locale' => 'pt_BR',
         'translation_file_patterns' => array(
             array(
                 'type'     => 'gettext',
@@ -105,7 +120,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Autenticacao' => 'Application\Controller\AutenticacaoController'
+            'Application\Controller\Autenticacao' => 'Application\Controller\AutenticacaoController',
+            'Application\Controller\Usuario' => 'Application\Controller\UsuarioController'
         ),
     ),
     'view_manager' => array(

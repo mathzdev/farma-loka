@@ -11,10 +11,10 @@ namespace Application\Entity;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * Class TbUsuarioRepository
+ * Class UsuarioRepository
  * @package Application\Entity
  */
-class TbUsuarioRepository extends EntityRepository
+class UsuarioRepository extends EntityRepository
 {
 
 } 

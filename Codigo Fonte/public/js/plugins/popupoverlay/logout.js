@@ -5,4 +5,9 @@ $(document).ready(function () {
     vertical: 'top'
   });
 
+  $('#delete').popup({
+    transition: 'ease-in-out 0.3s',
+    vertical: 'top'
+  });
+
 });

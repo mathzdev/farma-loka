@@ -5,12 +5,12 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TbUsuario
+ * Usuario
  *
  * @ORM\Table(name="tb_usuario")
- * @ORM\Entity(repositoryClass="Application\Entity\TbUsuarioRepository")
+ * @ORM\Entity(repositoryClass="Application\Entity\UsuarioRepository")
  */
-class TbUsuario
+class Usuario
 {
     /**
      * @var integer
@@ -65,7 +65,7 @@ class TbUsuario
      * Set nomeUsuario
      *
      * @param string $nomeUsuario
-     * @return TbUsuario
+     * @return Usuario
      */
     public function setNomeUsuario($nomeUsuario)
     {
@@ -88,7 +88,7 @@ class TbUsuario
      * Set emailUsuario
      *
      * @param string $emailUsuario
-     * @return TbUsuario
+     * @return Usuario
      */
     public function setEmailUsuario($emailUsuario)
     {
@@ -111,7 +111,7 @@ class TbUsuario
      * Set senhaUsuario
      *
      * @param string $senhaUsuario
-     * @return TbUsuario
+     * @return Usuario
      */
     public function setSenhaUsuario($senhaUsuario)
     {
@@ -134,7 +134,7 @@ class TbUsuario
      * Set statusUsuario
      *
      * @param string $statusUsuario
-     * @return TbUsuario
+     * @return Usuario
      */
     public function setStatusUsuario($statusUsuario)
     {

@@ -22,19 +22,76 @@ class AbstractService
     }
 
     /**
+     * Retorna a repository especificada, caso nao passe em parametro busca uma repository com base na service
+     *
      * @param $repository
      * @return mixed
      */
-    public function getRepository($repository)
+    public function getRepository($repository = null)
     {
-        return $this->em->getRepository($repository);
+        if ($repository == null) {
+            $repositoryName = get_class($this);
+            $repositoryName = str_replace('Service', 'Entity', $repositoryName);
+            return $this->em->getRepository($repositoryName);
+        } else {
+            return $this->em->getRepository($repository);
+        }
     }
 
     /**
-     * Transforms an under_scored_string to a camelCasedOne
+     * Transforma string em camel case: string_de_teste -> stringDeTeste
      */
     public function camelize($scored)
     {
         return lcfirst(implode('', array_map('ucfirst', array_map('strtolower', explode('_', $scored)))));
+    }
+
+    /**
+     * Retorna todos os registros da tabela
+     *
+     * @return mixed
+     */
+    public function findAll()
+    {
+        return $this->getRepository()->findAll();
+    }
+
+    /**
+     * Returna um registro especifico da tabela
+     *
+     * @param $id
+     *
+     * @return mixed
+     */
+    public function find($id)
+    {
+        return $this->getRepository()->find($id);
+    }
+
+    /**
+     * Retorna a entidade desse servico
+     *
+     * @param $repository
+     * @return mixed
+     */
+    public function getEntity($repository = null)
+    {
+        if ($repository == null) {
+            $repositoryName = get_class($this);
+            $repositoryName = str_replace('Service', 'Entity', $repositoryName);
+            return new $repositoryName();
+        } else {
+            return new $repository();
+        }
+    }
+
+    /**
+     * Retorna o gerenciador de entidades
+     *
+     * @return mixed
+     */
+    public function getEntityManager()
+    {
+        return $this->em;
     }
 }

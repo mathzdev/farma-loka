@@ -11,26 +11,52 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Session\Container;
 
+/**
+ * Class AbstractController
+ * @package Application\Controller
+ */
 class AbstractController extends AbstractActionController
 {
     /**
-     * @param null $class
+     * Primeiro metodo a ser executado antes de qualquer action/rota nesta controller
+     *
+     * @param \Zend\Mvc\MvcEvent $e
+     *
+     * @return mixed
+     */
+    public function onDispatch(\Zend\Mvc\MvcEvent $e)
+    {
+        if ($this->getUserSession()->logado == false && $this->getEvent()->getRouteMatch()->getMatchedRouteName() != 'autenticacao') {
+            $this->redirect()->toUrl('/autenticacao/login');
+        }
+        return parent::onDispatch($e);
+    }
+
+    /**
+     * Retorna um servico determinado via parametro
+     *
+     * @param null $service
      * @return null
      */
-    public function getService($class = null)
+    public function getService($service = null)
     {
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        if ($class == null) {
-            return null;
+        if ($service == null) {
+            $controllerName = get_class($this);
+            $controllerName = str_replace('\Controller', '\Service', $controllerName);
+            $controllerName = str_replace('Controller', '', $controllerName);
+            return new $controllerName($objectManager);
         } else {
-            return new $class($objectManager);
+            return new $service($objectManager);
         }
     }
 
     /**
+     * Recebe os parametros da requisicao do tipo POST e converte para um array
+     *
      * @return mixed
      */
     public function getPost()
@@ -40,6 +66,8 @@ class AbstractController extends AbstractActionController
     }
 
     /**
+     * Verifica se a requisicao e do tipo POST
+     *
      * @return mixed
      */
     public function isPost()
@@ -49,11 +77,23 @@ class AbstractController extends AbstractActionController
     }
 
     /**
+     * Retorna a sessao do usuario logado
+     *
      * @return Container
      */
     public function getUserSession()
     {
         $sessionUser = new Container('user_session');
         return $sessionUser;
+    }
+
+    /**
+     * Retorna os parametros passados pela variavel
+     *
+     * @return mixed
+     */
+    public function getParams()
+    {
+        return $this->getEvent()->getRouteMatch()->getParams();
     }
 }

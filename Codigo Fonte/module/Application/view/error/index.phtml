@@ -1,5 +1,39 @@
-<h1><?php echo $this->translate('An error occurred') ?></h1>
-<h2><?php echo $this->message ?></h2>
+<!-- begin PAGE TITLE AREA -->
+<!-- Use this section for each page's title and breadcrumb layout. In this example a date range picker is included within the breadcrumb. -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-title">
+            <h1>Erro
+                <small>Erro de Execução</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active"><i class="fa fa-cog"></i> Erros</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- end PAGE TITLE AREA -->
+
+<div class="row">
+    <!-- Inline Form Example -->
+    <!-- .col-lg-12 (open) -->
+    <div class="col-lg-12">
+        <div class="portlet portlet-red">
+            <div class="portlet-heading">
+                <div class="portlet-title">
+                    <h4><?php echo $this->translate('An error occurred') ?></h4>
+                </div>
+                <div class="portlet-widgets">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#inlineFormExample"><i class="fa fa-chevron-down"></i></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="inlineFormExample" class="panel-collapse collapse in">
+                <div class="portlet-body">
+
+<h2><?php echo $this->translate($this->message) ?></h2>
 
 <?php if (isset($this->display_exceptions) && $this->display_exceptions): ?>
 
@@ -66,3 +100,12 @@
 <?php endif ?>
 
 <?php endif ?>
+
+        </div>
+    </div>
+</div>
+<!-- /.portlet -->
+</div>
+<!-- /.col-lg-12 (nested) -->
+<!-- End Inline Form Example -->
+</div>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt">
 <head>
 
     <meta charset="utf-8">
@@ -36,8 +35,8 @@
     <link href="/css/demo.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
     <![endif]-->
 
 </head>
@@ -104,6 +103,20 @@
                 </a>
             </li>
             <!-- end DASHBOARD LINK -->
+            <!-- begin CHARTS DROPDOWN -->
+            <li class="panel">
+                <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#users">
+                    <i class="fa fa-gears"></i> Sistema <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="collapse nav" id="users">
+                    <li>
+                        <a href="/usuarios">
+                            <i class="fa fa-angle-double-right"></i> Usuários
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- end CHARTS DROPDOWN -->
             <!-- begin CHARTS DROPDOWN -->
             <li class="panel">
                 <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
@@ -179,10 +192,10 @@
 
 <!-- GLOBAL SCRIPTS -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="js/plugins/bootstrap/bootstrap.min.js"></script>
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
-<script src="js/plugins/popupoverlay/defaults.js"></script>
+<script src="/js/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+<script src="/js/plugins/popupoverlay/defaults.js"></script>
 <!-- Logout Notification Box -->
 <div id="logout">
     <div class="logout-message">
@@ -239,6 +252,7 @@
 <!-- THEME SCRIPTS -->
 <script src="/js/flex.js"></script>
 <script src="/js/demo/dashboard-demo.js"></script>
+<script src="/js/demo/advanced-tables-demo.js"></script>
 
 </body>
 
