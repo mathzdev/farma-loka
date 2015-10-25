@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="iso-8859-1">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -32,7 +32,7 @@
             <?php
             if ($this->mensagem != null)
             {
-                echo utf8_decode('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção!</strong> ' . $this->mensagem . '</div>');
+                echo '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção!</strong> ' . $this->mensagem . '</div>';
             }
             ?>
             <div class="portlet portlet-green">
@@ -50,7 +50,7 @@
                     <form accept-charset="UTF-8" role="form" method="POST">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" name="email" type="text" required="required">
+                                <input class="form-control" placeholder="E-mail" name="email" type="email" required="required">
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Senha" name="senha" type="password" required="required">

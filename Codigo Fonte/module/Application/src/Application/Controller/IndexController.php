@@ -9,11 +9,24 @@
 
 namespace Application\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Helper\Placeholder\Container;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends AbstractActionController
+class IndexController extends AbstractController
 {
+    /**
+     * Override, check for login etc
+     *
+     * @param \Zend\Mvc\MvcEvent $e
+     *
+     * @return void
+     */
+    public function onDispatch(\Zend\Mvc\MvcEvent $e)
+    {
+        if ($this->getUserSession()->logado == false) {
+            $this->redirect()->toUrl('/autenticacao/login');
+        }
+    }
     public function indexAction()
     {
         return new ViewModel();

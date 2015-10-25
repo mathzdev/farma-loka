@@ -8,7 +8,6 @@
 
 namespace Application\Controller;
 
-use Zend\Session\Container;
 use Zend\View\Model\ViewModel;
 
 class AutenticacaoController extends AbstractController
@@ -19,7 +18,7 @@ class AutenticacaoController extends AbstractController
         $response->setStatusCode(200);
         $response->setContent(null);
 
-        $sessionUser = new Container('user_session');
+        $sessionUser = $this->getUserSession();
 
         if ($sessionUser->logado == true) {
             $this->redirect()->toRoute('home');
@@ -32,24 +31,23 @@ class AutenticacaoController extends AbstractController
 
     public function loginAction()
     {
-        $result = new ViewModel(array('titulo' => 'Login - Farma Loka'));
+        $result = new ViewModel(array('titulo' => 'Farma Loka # Login'));
         $result->setTerminal(true);
-        $sessionUser = new Container('user_session');
 
         if ($this->isPost()) {
             $arrPost = $this->getPost();
             $existeUsuario = $this->getService('Application\Service\Usuario')->existeUsuario(array('email_usuario' => $arrPost['email'], 'senha_usuario' => $arrPost['senha']));
 
             if ($existeUsuario) {
-                $sessionUser->logado = true;
-                $sessionUser->usuario = $this->getService('Application\Service\Usuario')->usuarioLogado(array('email_usuario' => $arrPost['email'], 'senha_usuario' => $arrPost['senha']));
+                $this->getUserSession()->logado = true;
+                $this->getUserSession()->usuario = $this->getService('Application\Service\Usuario')->usuarioLogado(array('email_usuario' => $arrPost['email'], 'senha_usuario' => $arrPost['senha']));
             } else {
                 $result->setVariable('mensagem', 'Usuário ou senha não localizados em nosso sistema.');
-                $sessionUser->logado = false;
+                $this->getUserSession()->logado = false;
             }
         }
 
-        if ($sessionUser->logado == true) {
+        if ($this->getUserSession()->logado == true) {
             $this->redirect()->toRoute('home');
         }
 
@@ -58,9 +56,8 @@ class AutenticacaoController extends AbstractController
 
     public function logoutAction()
     {
-        $sessionUser = new Container('user_session');
-        $sessionUser->logado = false;
-        $sessionUser->usuario = array();
+        $this->getUserSession()->logado = false;
+        $this->getUserSession()->usuario = array();
         $this->redirect()->toRoute('autenticacao');
     }
 }

@@ -9,6 +9,7 @@
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Session\Container;
 
 class AbstractController extends AbstractActionController
 {
@@ -46,4 +47,13 @@ class AbstractController extends AbstractActionController
         $request = $this->getRequest();
         return $request->isPost();
     }
-} 
+
+    /**
+     * @return Container
+     */
+    public function getUserSession()
+    {
+        $sessionUser = new Container('user_session');
+        return $sessionUser;
+    }
+}
