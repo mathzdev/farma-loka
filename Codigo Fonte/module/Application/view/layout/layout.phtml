@@ -12,9 +12,11 @@
 
         <!-- Le styles -->
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath('css/plugins/bootstrap/css/bootstrap.min.css'))
+                        ->prependStylesheet($this->basePath('icons/font-awesome/css/font-awesome.min.css'))
                         ->prependStylesheet($this->basePath('css/style.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+                        ->prependStylesheet($this->basePath('css/plugins.css'))
+                        ->prependStylesheet($this->basePath('css/demo.css')) ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
