@@ -104,8 +104,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => Controller\IndexController::class,
-            'Application\Controller\Autenticacao' => Controller\AutenticacaoController::class
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Autenticacao' => 'Application\Controller\AutenticacaoController'
         ),
     ),
     'view_manager' => array(
