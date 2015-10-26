@@ -10,8 +10,17 @@ namespace Application\Controller;
 
 use Zend\View\Model\ViewModel;
 
+/**
+ * Class AutenticacaoController
+ * @package Application\Controller
+ */
 class AutenticacaoController extends AbstractController
 {
+    /**
+     * Rota inicial da controller autenticacao
+     *
+     * @return array|\Zend\Stdlib\ResponseInterface
+     */
     public function indexAction()
     {
         $response = $this->getResponse();
@@ -29,6 +38,11 @@ class AutenticacaoController extends AbstractController
         return $response;
     }
 
+    /**
+     * Rota para o usuario realizar login
+     *
+     * @return ViewModel
+     */
     public function loginAction()
     {
         $result = new ViewModel(array('titulo' => 'Farma Loka # Login'));
@@ -54,8 +68,15 @@ class AutenticacaoController extends AbstractController
         return $result;
     }
 
+    /**
+     * Rota para o usuario realizar logout
+     */
     public function logoutAction()
     {
+        $response = $this->getResponse();
+        $response->setStatusCode(200);
+        $response->setContent(null);
+
         $this->getUserSession()->logado = false;
         $this->getUserSession()->usuario = array();
         $this->redirect()->toRoute('autenticacao');

@@ -14,8 +14,18 @@ namespace Application\Service;
  */
 class AbstractService
 {
+    /**
+     * Gerenciador de entidades
+     *
+     * @var $em
+     */
     protected $em;
 
+    /**
+     * Construtor da classe
+     *
+     * @param $objectManager
+     */
     public function __construct($objectManager)
     {
         $this->em = $objectManager;
@@ -40,6 +50,10 @@ class AbstractService
 
     /**
      * Transforma string em camel case: string_de_teste -> stringDeTeste
+     *
+     * @param $scored
+     *
+     * @return string
      */
     public function camelize($scored)
     {

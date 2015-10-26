@@ -12,8 +12,17 @@ namespace Application\Controller;
 use Zend\View\Helper\Placeholder\Container;
 use Zend\View\Model\ViewModel;
 
+/**
+ * Class IndexController
+ * @package Application\Controller
+ */
 class IndexController extends AbstractController
 {
+    /**
+     * Rota inicial do sistema
+     *
+     * @return array|ViewModel
+     */
     public function indexAction()
     {
         return new ViewModel();

@@ -12,8 +12,17 @@ namespace Application;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
+/**
+ * Class Module
+ * @package Application
+ */
 class Module
 {
+    /**
+     * onBootstrap
+     *
+     * @param MvcEvent $e
+     */
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
@@ -21,11 +30,21 @@ class Module
         $moduleRouteListener->attach($eventManager);
     }
 
+    /**
+     * Get config
+     *
+     * @return mixed
+     */
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
+    /**
+     * Get autoloader config
+     *
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return array(

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: matheuslucio
+ * Date: 25/10/15
+ * Time: 08:54
+ */
 
 namespace Application\Entity;
 
@@ -13,6 +19,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Usuario
 {
     /**
+     * ID do usuario
+     *
      * @var integer
      *
      * @ORM\Column(name="id_usuario", type="integer", nullable=false)
@@ -22,6 +30,8 @@ class Usuario
     private $idUsuario;
 
     /**
+     * Nome do usuario
+     *
      * @var string
      *
      * @ORM\Column(name="nome_usuario", type="string", length=200, nullable=true)
@@ -29,6 +39,8 @@ class Usuario
     private $nomeUsuario;
 
     /**
+     * Email do usuario
+     *
      * @var string
      *
      * @ORM\Column(name="email_usuario", type="string", length=200, nullable=false)
@@ -36,6 +48,8 @@ class Usuario
     private $emailUsuario;
 
     /**
+     * Senha do usuario
+     *
      * @var string
      *
      * @ORM\Column(name="senha_usuario", type="string", length=200, nullable=false)
@@ -43,6 +57,8 @@ class Usuario
     private $senhaUsuario;
 
     /**
+     * Status do usuario (ativo ou nao)
+     *
      * @var string
      *
      * @ORM\Column(name="status_usuario", type="string", length=200, nullable=true)
