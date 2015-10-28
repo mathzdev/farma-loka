@@ -90,4 +90,31 @@ class UsuarioController extends AbstractController
 
         return $response;
     }
+
+    /**
+     * Rota para editar um usuario
+     *
+     * @return ViewModel
+     */
+    public function meusDadosAction()
+    {
+        $sessionUser = $this->getUserSession();
+
+        if ($sessionUser->logado == false) {
+            $this->redirect()->toUrl('/autenticacao/login');
+        }
+
+        $view = new ViewModel(array('usuario' => $this->getService()->find($sessionUser->usuario['idUsuario'])));
+
+        if ($this->isPost()) {
+            $arrPost = $this->getPost();
+            $insereUsuario = $this->getService()->editaUsuario($arrPost, $sessionUser->usuario['idUsuario']);
+
+            if ($insereUsuario == true) {
+                $view->setVariable('mensagem', 'Seus dados foram atualizados com sucesso.');
+            }
+        }
+
+        return $view;
+    }
 } 

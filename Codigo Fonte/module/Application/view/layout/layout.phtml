@@ -5,6 +5,8 @@
  * Date: 25/10/15
  * Time: 08:54
  */
+
+$sessionUser = new \Application\Controller\AbstractController();
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -62,7 +64,7 @@
             <i class="fa fa-bars"></i> Menu
         </button>
         <div class="navbar-brand">
-            <a href="index.html" style="color:#fff;">
+            <a href="/" style="color:#fff;">
                 <i class="fa fa-medkit"></i> Farma Loka
             </a>
         </div>
@@ -98,8 +100,8 @@
                     <i class="fa fa-key"></i> Logado como
                 </p>
                 <p class="name tooltip-sidebar-logout">
-                    <?php echo $_SESSION['user_session']['usuario']['nomeUsuario']; ?>
-                    <span class="last-name"><?php echo explode('@', $_SESSION['user_session']['usuario']['emailUsuario'])[0]; ?></span> <a style="color: inherit" class="logout_open" href="#logout" data-toggle="tooltip" data-placement="top" title="Sair"><i class="fa fa-sign-out"></i></a>
+                    <?php echo utf8_encode($sessionUser->getUserSession()->usuario['nomeUsuario']); ?>
+                    <span class="last-name"><?php echo explode('@', $sessionUser->getUserSession()->usuario['emailUsuario'])[0]; ?></span> <a style="color: inherit" class="logout_open" href="#logout" data-toggle="tooltip" data-placement="top" title="Sair"><i class="fa fa-sign-out"></i></a>
                 </p>
                 <div class="clearfix"></div>
             </li>
@@ -118,6 +120,11 @@
                 </a>
                 <ul class="collapse nav" id="users">
                     <li>
+                        <a href="/meus-dados">
+                            <i class="fa fa-angle-double-right"></i> Meus Dados
+                        </a>
+                    </li>
+                    <li>
                         <a href="/usuarios">
                             <i class="fa fa-angle-double-right"></i> Usuários
                         </a>
@@ -132,7 +139,7 @@
                 </a>
                 <ul class="collapse nav" id="charts">
                     <li>
-                        <a href="cadastro-pedido.html">
+                        <a href="/pedidos">
                             <i class="fa fa-angle-double-right"></i> Cadastro de Pedido
                         </a>
                     </li>
@@ -146,22 +153,22 @@
                 </a>
                 <ul class="collapse nav" id="forms">
                     <li>
-                        <a href="cadastro-cliente.html">
+                        <a href="/clientes">
                             <i class="fa fa-angle-double-right"></i> Cadastro de Cliente
                         </a>
                     </li>
                     <li>
-                        <a href="cadastro-fornecedor.html">
+                        <a href="/fornecedores">
                             <i class="fa fa-angle-double-right"></i> Cadastro de Fornecedor
                         </a>
                     </li>
                     <li>
-                        <a href="cadastro-funcionario.html">
+                        <a href="/funcionarios">
                             <i class="fa fa-angle-double-right"></i> Cadastro de Funcionário
                         </a>
                     </li>
                     <li>
-                        <a href="cadastro-produto.html">
+                        <a href="/produtos">
                             <i class="fa fa-angle-double-right"></i> Cadastro de Produto
                         </a>
                     </li>

@@ -71,6 +71,24 @@ class AbstractService
     }
 
     /**
+     * Returna um array com registros da tabela
+     *
+     * @param $arr
+     *
+     * @return mixed
+     */
+    public function findBy($arrParam)
+    {
+        $arrFind = array();
+
+        foreach ($arrParam as $key => $param) {
+            $arrFind[$this->camelize($key)] = $param;
+        }
+
+        return $this->getRepository()->findBy($arrFind);
+    }
+
+    /**
      * Returna um registro especifico da tabela
      *
      * @param $id

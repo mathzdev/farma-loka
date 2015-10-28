@@ -7,13 +7,14 @@
     <orderEntry type="module-library">
       <library name="PHARS">
         <CLASSES>
+          <root url="phar://$MODULE_DIR$/Codigo Fonte/vendor/phpdocumentor/fileset/tests/data/test.phar" />
           <root url="phar://$MODULE_DIR$/Codigo Fonte/composer.phar" />
         </CLASSES>
         <SOURCES>
+          <root url="phar://$MODULE_DIR$/Codigo Fonte/vendor/phpdocumentor/fileset/tests/data/test.phar" />
           <root url="phar://$MODULE_DIR$/Codigo Fonte/composer.phar" />
         </SOURCES>
       </library>
     </orderEntry>
   </component>
 </module>
-

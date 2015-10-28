@@ -96,4 +96,20 @@ class AbstractController extends AbstractActionController
     {
         return $this->getEvent()->getRouteMatch()->getParams();
     }
+
+    public function getStmpOptions()
+    {
+        $stmpOptionsArr = array(
+            'host'              => 'mx1.hostinger.com.br',
+            'connection_class'  => 'login',
+            'connection_config' => array(
+                'ssl'       => 'tls',
+                'username' => 'farmaloka@ma-the.us',
+                'password' => 'farmaemailloka456'
+            ),
+            'port' => 587,
+        );
+
+        return $stmpOptionsArr;
+    }
 }

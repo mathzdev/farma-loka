@@ -12,7 +12,7 @@
     <div class="col-lg-12">
         <div class="page-title">
             <h1>Usuários
-                <small>Cadastro</small>
+                <small>Meus Dados</small>
             </h1>
             <ol class="breadcrumb">
                 <li class="active"><i class="fa fa-users"></i> Usuários</li>
@@ -33,13 +33,10 @@
             echo '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção!</strong> ' . $this->mensagem . '</div>';
         }
         ?>
-        <a href="/usuarios" class="btn btn-default btn-square">Listar Usuários</a>
-        <br />
-        <br />
         <div class="portlet portlet-blue">
             <div class="portlet-heading">
                 <div class="portlet-title">
-                    <h4>Edição de Usuário</h4>
+                    <h4>Meus Dados</h4>
                 </div>
                 <div class="portlet-widgets">
                     <a data-toggle="collapse" data-parent="#accordion" href="#horizontalFormExample"><i class="fa fa-chevron-down"></i></a>
@@ -64,12 +61,17 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">Senha</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" id="senha_usuario" name="senha_usuario" placeholder="Senha" required="required" value="<?php echo $usuario->getSenhaUsuario(); ?>">
+                                <input type="text" class="form-control" id="senha_usuario" name="senha_usuario" placeholder="Senha" required="required" value="<?php echo $usuario->getSenhaUsuario(); ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-default btn-square">Atualizar</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <i>Caso efetue atualização no e-mail ou no nome, só surtirá efeito no sistema após o logout (sair).</i>
                             </div>
                         </div>
                     </form>

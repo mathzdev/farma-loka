@@ -28,6 +28,8 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+        date_default_timezone_set('UTC');
+        date_default_timezone_set('America/Sao_Paulo');
     }
 
     /**
