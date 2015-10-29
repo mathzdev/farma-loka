@@ -25,7 +25,7 @@ class Cliente extends AbstractService
     public function insereCliente($arrParam, $files)
     {
         $arrInsert = array();
-        if (count($files['foto_cliente']) > 1 && strlen($files['foto_cliente']['type']) > 1) {
+        if (count($files['foto_cliente']) > 1 && strlen($files['foto_cliente']['type']) > 1 && $this->isImage($files['foto_cliente']['tmp_name'])) {
             $diretorioUpload = getcwd() . '/public/data/';
             $nomeFile = md5(time()) . '.' .  explode('/', $files['foto_cliente']['type'])[1];
             $arquivo = $diretorioUpload . $nomeFile;
@@ -84,7 +84,7 @@ class Cliente extends AbstractService
     {
         $arrUpdate = array();
 
-        if (count($files['foto_cliente']) > 1 && strlen($files['foto_cliente']['type']) > 1) {
+        if (count($files['foto_cliente']) > 1 && strlen($files['foto_cliente']['type']) > 1 && $this->isImage($files['foto_cliente']['tmp_name'])) {
             $diretorioUpload = getcwd() . '/public/data/';
             $nomeFile = md5(time()) . '.' .  explode('/', $files['foto_cliente']['type'])[1];
             $arquivo = $diretorioUpload . $nomeFile;

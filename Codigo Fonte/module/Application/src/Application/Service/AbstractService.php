@@ -126,4 +126,14 @@ class AbstractService
     {
         return $this->em;
     }
+
+    /**
+     * Retorna se esse arquivo e uma imagem
+     *
+     * @param $img
+     * @return bool
+     */
+    public function isImage($img){
+        return (bool) getimagesize($img);
+    }
 }
