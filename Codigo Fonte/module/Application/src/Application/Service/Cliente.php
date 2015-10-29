@@ -59,7 +59,9 @@ class Cliente extends AbstractService
             $entidade->setComplementoCliente($arrInsert['complementoCliente']);
             $entidade->setCidadeCliente($arrInsert['cidadeCliente']);
             $entidade->setUfCliente($arrInsert['ufCliente']);
-            $entidade->setFotoCliente($arrInsert['fotoCliente']);
+            if ($arrInsert['fotoCliente'] != null) {
+                $entidade->setFotoCliente($arrInsert['fotoCliente']);
+            }
             $entidade->setDtCadastroCliente(time());
             $this->getEntityManager()->persist($entidade);
             $this->getEntityManager()->flush();
