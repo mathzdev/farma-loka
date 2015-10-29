@@ -51,7 +51,7 @@ return array(
                     ),
                 ),
             ),
-            'usuario' => array(
+            'usuarios' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
                     'route'    => '/usuarios[/:action][/:id]',
@@ -73,6 +73,36 @@ return array(
                     'defaults' => array(
                         'controller' => 'Application\Controller\Usuario',
                         'action'     => 'meusDados',
+                    ),
+                ),
+            ),
+            'clientes' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/clientes[/:action][/:id]',
+                    'constraints' => array(
+                        'controller' => 'Application\Controller\Cliente',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Cliente',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'ajax' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/ajax[/:action][/:id]',
+                    'constraints' => array(
+                        'controller' => 'Application\Controller\Ajax',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ajax',
+                        'action'     => 'index',
                     ),
                 ),
             ),
@@ -131,7 +161,9 @@ return array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Autenticacao' => 'Application\Controller\AutenticacaoController',
-            'Application\Controller\Usuario' => 'Application\Controller\UsuarioController'
+            'Application\Controller\Usuario' => 'Application\Controller\UsuarioController',
+            'Application\Controller\Cliente' => 'Application\Controller\ClienteController',
+            'Application\Controller\Ajax' => 'Application\Controller\AjaxController',
         ),
     ),
     'view_manager' => array(

@@ -36,6 +36,8 @@ $sessionUser = new \Application\Controller\AbstractController();
     <link href="/css/plugins/morris/morris.css" rel="stylesheet">
     <link href="/css/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet">
     <link href="/css/plugins/datatables/datatables.css" rel="stylesheet">
+    <link href="/css/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="/css/plugins/bootstrap-datepicker/datepicker3.css" rel="stylesheet">
 
     <!-- THEME STYLES - Include these on every page. -->
     <link href="/css/style.css" rel="stylesheet">
@@ -100,7 +102,7 @@ $sessionUser = new \Application\Controller\AbstractController();
                     <i class="fa fa-key"></i> Logado como
                 </p>
                 <p class="name tooltip-sidebar-logout">
-                    <?php echo utf8_encode($sessionUser->getUserSession()->usuario['nomeUsuario']); ?>
+                    <?php echo $sessionUser->getUserSession()->usuario['nomeUsuario']; ?>
                     <span class="last-name"><?php echo explode('@', $sessionUser->getUserSession()->usuario['emailUsuario'])[0]; ?></span> <a style="color: inherit" class="logout_open" href="#logout" data-toggle="tooltip" data-placement="top" title="Sair"><i class="fa fa-sign-out"></i></a>
                 </p>
                 <div class="clearfix"></div>
@@ -140,7 +142,7 @@ $sessionUser = new \Application\Controller\AbstractController();
                 <ul class="collapse nav" id="charts">
                     <li>
                         <a href="/pedidos">
-                            <i class="fa fa-angle-double-right"></i> Cadastro de Pedido
+                            <i class="fa fa-angle-double-right"></i> Pedidos
                         </a>
                     </li>
                 </ul>
@@ -154,22 +156,22 @@ $sessionUser = new \Application\Controller\AbstractController();
                 <ul class="collapse nav" id="forms">
                     <li>
                         <a href="/clientes">
-                            <i class="fa fa-angle-double-right"></i> Cadastro de Cliente
+                            <i class="fa fa-angle-double-right"></i> Clientes
                         </a>
                     </li>
                     <li>
                         <a href="/fornecedores">
-                            <i class="fa fa-angle-double-right"></i> Cadastro de Fornecedor
+                            <i class="fa fa-angle-double-right"></i> Forneceores
                         </a>
                     </li>
                     <li>
                         <a href="/funcionarios">
-                            <i class="fa fa-angle-double-right"></i> Cadastro de Funcionário
+                            <i class="fa fa-angle-double-right"></i> Funcionários
                         </a>
                     </li>
                     <li>
                         <a href="/produtos">
-                            <i class="fa fa-angle-double-right"></i> Cadastro de Produto
+                            <i class="fa fa-angle-double-right"></i> Produtos
                         </a>
                     </li>
                 </ul>
@@ -267,7 +269,11 @@ $sessionUser = new \Application\Controller\AbstractController();
 <!-- THEME SCRIPTS -->
 <script src="/js/flex.js"></script>
 <script src="/js/demo/dashboard-demo.js"></script>
+<script src="/js/demo/dashboard-demo.js"></script>
 <script src="/js/demo/advanced-tables-demo.js"></script>
+<script src="/js/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+<script src="/js/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="/js/demo/jquery.mask.min.js"></script>
 
 </body>
 

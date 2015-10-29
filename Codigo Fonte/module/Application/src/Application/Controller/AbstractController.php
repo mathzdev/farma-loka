@@ -66,6 +66,17 @@ class AbstractController extends AbstractActionController
     }
 
     /**
+     * Recebe os arquivos da requisicao e converte para um array
+     *
+     * @return mixed
+     */
+    public function getFiles()
+    {
+        $request = $this->getRequest();
+        return (array) $request->getFiles();
+    }
+
+    /**
      * Verifica se a requisicao e do tipo POST
      *
      * @return mixed

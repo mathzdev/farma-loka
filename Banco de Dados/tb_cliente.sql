@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `tb_cliente` (
+  `id_cliente` int(11) NOT NULL AUTO_INCREMENT,
+  `dt_cadastro_cliente` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome_cliente` varchar(200) NOT NULL,
+  `cpf_cliente` varchar(20) NOT NULL,
+  `rg_cliente` varchar(20) NOT NULL,
+  `telefone_cliente` varchar(20) NOT NULL,
+  `celular_cliente` varchar(20) NOT NULL,
+  `dt_nascimento_cliente` timestamp NOT NULL,
+  `email_cliente` varchar(200) NOT NULL,
+  `sexo_cliente` varchar(50) NOT NULL,
+  `cep_cliente` varchar(20) NOT NULL,
+  `endereco_cliente` varchar(200) NOT NULL,
+  `numero_cliente` varchar(20) NOT NULL,
+  `complemento_cliente` varchar(200) NOT NULL,
+  `cidade_cliente` int(11) NOT NULL,
+  `uf_cliente` int(11) NOT NULL,
+  `foto_cliente` varchar(500) NOT NULL,
+  PRIMARY KEY (`id_cliente`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;

@@ -9,7 +9,6 @@
 
 namespace Application\Controller;
 
-use Zend\View\Helper\Placeholder\Container;
 use Zend\View\Model\ViewModel;
 
 /**
@@ -25,6 +24,10 @@ class IndexController extends AbstractController
      */
     public function indexAction()
     {
-        return new ViewModel();
+        $countClientes = $this->getService('Application\Service\Cliente')->findAll();
+        $arrReturn = array(
+            'countClientes' => count($countClientes)
+        );
+        return new ViewModel($arrReturn);
     }
 }
