@@ -24,6 +24,9 @@ class IndexController extends AbstractController
      */
     public function indexAction()
     {
+        /**
+         * Obs alterar tambem na relatorio controller
+         */
         $countClientes = $this->getService('Application\Service\Cliente')->findAll();
         $countFuncionarios = $this->getService('Application\Service\Funcionario')->findAll();
 

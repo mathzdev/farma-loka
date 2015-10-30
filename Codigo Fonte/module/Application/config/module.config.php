@@ -121,6 +121,21 @@ return array(
                     ),
                 ),
             ),
+            'relatorios' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/relatorios[/:action][/:id]',
+                    'constraints' => array(
+                        'controller' => 'Application\Controller\Relatorio',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Relatorio',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -180,6 +195,7 @@ return array(
             'Application\Controller\Cliente' => 'Application\Controller\ClienteController',
             'Application\Controller\Ajax' => 'Application\Controller\AjaxController',
             'Application\Controller\Funcionario' => 'Application\Controller\FuncionarioController',
+            'Application\Controller\Relatorio' => 'Application\Controller\RelatorioController',
         ),
     ),
     'view_manager' => array(

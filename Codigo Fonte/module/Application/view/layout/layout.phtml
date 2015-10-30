@@ -177,6 +177,18 @@ $sessionUser = new \Application\Controller\AbstractController();
                 </ul>
             </li>
             <li class="panel">
+                <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#relatories">
+                    <i class="fa fa-bar-chart-o"></i> Relatórios <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="collapse nav" id="relatories">
+                    <li>
+                        <a href="/relatorios/funcionarios-cargos">
+                            <i class="fa fa-angle-double-right"></i> Funcionários x Cargo
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="panel">
                 <a class="logout_open" href="#logout" data-toggle="tooltip" data-placement="top" title="Sair">
                     <i class="fa fa-sign-out"></i> Sair
                 </a>
@@ -238,7 +250,6 @@ $sessionUser = new \Application\Controller\AbstractController();
 <script src="/js/plugins/popupoverlay/logout.js"></script>
 <!-- HISRC Retina Images -->
 <script src="/js/plugins/hisrc/hisrc.js"></script>
-
 <!-- PAGE LEVEL PLUGIN SCRIPTS -->
 <!-- HubSpot Messenger -->
 <script src="/js/plugins/messenger/messenger.min.js"></script>
@@ -265,15 +276,16 @@ $sessionUser = new \Application\Controller\AbstractController();
 <!-- DataTables -->
 <script src="/js/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/js/plugins/datatables/datatables-bs3.js"></script>
-
 <!-- THEME SCRIPTS -->
-<script src="/js/flex.js"></script>
 <script src="/js/demo/dashboard-demo.js"></script>
 <script src="/js/demo/dashboard-demo.js"></script>
 <script src="/js/demo/advanced-tables-demo.js"></script>
 <script src="/js/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
 <script src="/js/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 <script src="/js/demo/jquery.mask.min.js"></script>
+<!-- Morris Demo/Dummy Data -->
+<script src="/js/plugins/morris/morris-demo-data.js"></script>
+<script src="/js/flex.js"></script>
 
 </body>
 
