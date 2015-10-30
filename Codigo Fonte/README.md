@@ -8,6 +8,7 @@ Utilizaremos PHP, Zend Framework 2, Doctrine 2, jQuery e Bootstrap.
 Para gerar entidades do doctrine utilize os seguintes comandos:
 
 > ./vendor/doctrine/doctrine-module/bin/doctrine-module orm:convert-mapping --namespace="Application\\Entity\\" --force  --from-database annotation ./module/Application/src/
+
 > ./vendor/doctrine/doctrine-module/bin/doctrine-module orm:generate-entities ./module/Application/src/ --generate-annotations=true
 
 
