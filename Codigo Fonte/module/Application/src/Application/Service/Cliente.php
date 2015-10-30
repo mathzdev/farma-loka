@@ -80,7 +80,7 @@ class Cliente extends AbstractService
      *
      * @return bool
      */
-    public function editaUsuario($arrParam, $files, $idCliente)
+    public function editaCliente($arrParam, $files, $idCliente)
     {
         $arrUpdate = array();
 
@@ -124,6 +124,29 @@ class Cliente extends AbstractService
             $entidade->setDtCadastroCliente(time());
             $this->getEntityManager()->persist($entidade);
             $this->getEntityManager()->flush();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Deleta um cliente do sistema
+     *
+     * @param $idCliente
+     *
+     * @return bool
+     */
+    public function deletaCliente($idCliente)
+    {
+        $entidade = $this->getEntityManager()->getReference(get_class($this->getEntity()), $idCliente);
+        $cliente = $this->find($idCliente);
+
+        try {
+            unlink('public' . $cliente->getFotoCliente());
+            $this->getEntityManager()->remove($entidade);
+            $this->getEntityManager()->flush();
+
             return true;
         } catch (\Exception $e) {
             return false;

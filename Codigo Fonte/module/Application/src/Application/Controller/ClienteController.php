@@ -71,9 +71,9 @@ class ClienteController extends AbstractController
             $arrPost = $this->getPost();
             $arrFile = $this->getFiles();
 
-            $insereUsuario = $this->getService()->editaUsuario($arrPost, $arrFile, $arrParam['id']);
+            $editaCliente = $this->getService()->editaCliente($arrPost, $arrFile, $arrParam['id']);
 
-            if ($insereUsuario == true) {
+            if ($editaCliente == true) {
                 $view->setVariable('mensagem', 'Usuário atualizado com sucesso.');
             }
         }
@@ -92,10 +92,10 @@ class ClienteController extends AbstractController
         $response->setStatusCode(200);
         $response->setContent(null);
         $arrParam = $this->getParams();
-        $deletaUsuario = $this->getService()->deletaUsuario($arrParam['id']);
+        $deletaCliente = $this->getService()->deletaCliente($arrParam['id']);
 
-        if ($deletaUsuario == true) {
-            $this->redirect()->toRoute('usuario');
+        if ($deletaCliente == true) {
+            $this->redirect()->toRoute('clientes');
         }
 
         return $response;

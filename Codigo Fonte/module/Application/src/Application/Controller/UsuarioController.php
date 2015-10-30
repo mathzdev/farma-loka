@@ -85,7 +85,7 @@ class UsuarioController extends AbstractController
         $deletaUsuario = $this->getService()->deletaUsuario($arrParam['id']);
 
         if ($deletaUsuario == true) {
-            $this->redirect()->toRoute('usuario');
+            $this->redirect()->toRoute('usuarios');
         }
 
         return $response;
