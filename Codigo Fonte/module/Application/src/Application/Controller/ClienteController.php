@@ -18,7 +18,7 @@ use Zend\View\Model\ViewModel;
 class ClienteController extends AbstractController
 {
     /**
-     * Rota inicial do sistema
+     * Rota inicial do modulo
      *
      * @return array|ViewModel
      */

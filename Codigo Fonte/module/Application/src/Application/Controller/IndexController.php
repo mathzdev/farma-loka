@@ -18,16 +18,20 @@ use Zend\View\Model\ViewModel;
 class IndexController extends AbstractController
 {
     /**
-     * Rota inicial do sistema
+     * Rota inicial do modulo
      *
      * @return array|ViewModel
      */
     public function indexAction()
     {
         $countClientes = $this->getService('Application\Service\Cliente')->findAll();
+        $countFuncionarios = $this->getService('Application\Service\Funcionario')->findAll();
+
         $arrReturn = array(
-            'countClientes' => count($countClientes)
+            'countClientes' => count($countClientes),
+            'countFuncionarios' => count($countFuncionarios),
         );
+
         return new ViewModel($arrReturn);
     }
 }
