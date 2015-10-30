@@ -121,7 +121,6 @@ class Cliente extends AbstractService
             if ($arrUpdate['fotoCliente'] != null) {
                 $entidade->setFotoCliente($arrUpdate['fotoCliente']);
             }
-            $entidade->setDtCadastroCliente(time());
             $this->getEntityManager()->persist($entidade);
             $this->getEntityManager()->flush();
             return true;

@@ -12,7 +12,7 @@ namespace Application\Controller;
 use Zend\View\Model\ViewModel;
 
 /**
- * Class IndexController
+ * Class ClienteController
  * @package Application\Controller
  */
 class ClienteController extends AbstractController
@@ -74,7 +74,7 @@ class ClienteController extends AbstractController
             $editaCliente = $this->getService()->editaCliente($arrPost, $arrFile, $arrParam['id']);
 
             if ($editaCliente == true) {
-                $view->setVariable('mensagem', 'Usuário atualizado com sucesso.');
+                $view->setVariable('mensagem', 'Cliente atualizado com sucesso.');
             }
         }
 

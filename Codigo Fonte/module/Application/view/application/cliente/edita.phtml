@@ -8,7 +8,7 @@
 ?>
 <script>
     setTimeout(function() {
-        jQuery(window).load(function() {
+        jQuery(document).ready(function() {
             $.fn.datepicker.dates['pt_BR'] = {
                 days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
                 daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
@@ -19,7 +19,7 @@
                 today: "Hoje",
                 clear: "Limpar",
                 format: "dd/mm/yyyy",
-                titleFormat: "MM 'de' yyyy", /* Leverages same syntax as 'format' */
+                titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
                 weekStart: 0
             };
 
@@ -37,12 +37,13 @@
             jQuery('#cep_cliente').mask('00.000-000');
 
             jQuery('#uf_cliente').change(function () {
+                jQuery('#cidade_cliente').html('<option value="">Carregando...</option>');
                 jQuery.ajax({
                     url: '/ajax/cidades/' + jQuery(this).val(),
                     type: 'GET',
                     dataType: 'JSON',
                     success: function( json ) {
-                        jQuery('#cidade_cliente').html('<option value="">Selecione Estado</option>');
+                        jQuery('#cidade_cliente').html('<option value="">Selecionar cidade</option>');
                         jQuery.each(json, function(i, value) {
                             jQuery('#cidade_cliente').append(jQuery('<option>').text(value.nomeCidade).attr('value', value.idCidade));
                         });
@@ -58,7 +59,7 @@
                     type: 'GET',
                     dataType: 'JSON',
                     success: function( json ) {
-                        jQuery('#cidade_cliente').html('<option value="">Selecione Estado</option>');
+                        jQuery('#cidade_cliente').html('<option value="">Selecionar cidade</option>');
 
                         jQuery.each(json, function(i, value) {
                             jQuery('#cidade_cliente').append(jQuery('<option>').text(value.nomeCidade).attr('value', value.idCidade));
@@ -67,7 +68,7 @@
                         jQuery('#cidade_cliente').val(<?php echo $this->cliente->getCidadeCliente(); ?>);
                     }
                 });
-            }, 1000);
+            }, 100);
         });
     }, 1000);
 </script>

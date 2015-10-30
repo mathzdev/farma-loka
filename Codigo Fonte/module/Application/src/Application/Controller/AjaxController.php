@@ -11,7 +11,7 @@ namespace Application\Controller;
 use Zend\View\Model\ViewModel;
 
 /**
- * Class IndexController
+ * Class AjaxController
  * @package Application\Controller
  */
 class AjaxController extends AbstractController

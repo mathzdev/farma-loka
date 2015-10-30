@@ -11,11 +11,11 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="page-title">
-            <h1>Clientes
+            <h1>Funcionários
                 <small>Listar</small>
             </h1>
             <ol class="breadcrumb">
-                <li class="active"><i class="fa fa-users"></i> Clientes</li>
+                <li class="active"><i class="fa fa-users"></i> Funcionários</li>
             </ol>
         </div>
     </div>
@@ -28,13 +28,13 @@
     <!-- Inline Form Example -->
     <!-- .col-lg-12 (open) -->
     <div class="col-lg-12">
-        <a href="/clientes/cadastro" class="btn btn-green btn-square">Cadastrar Cliente</a>
+        <a href="/funcionarios/cadastro" class="btn btn-green btn-square">Cadastrar Funcionário</a>
         <br />
         <br />
         <div class="portlet portlet-default">
             <div class="portlet-heading">
                 <div class="portlet-title">
-                    <h4>Clientes</h4>
+                    <h4>Funcionários</h4>
                 </div>
                 <div class="portlet-widgets">
                     <a data-toggle="collapse" data-parent="#accordion" href="#inlineFormExample"><i class="fa fa-chevron-down"></i></a>
@@ -50,19 +50,21 @@
                     <th>Código</th>
                     <th>Nome</th>
                     <th>CPF</th>
+                    <th>Função</th>
                     <th>Ações</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($this->clientes as $cliente) { ?>
+                <?php foreach ($this->funcionarios as $funcionario) { ?>
                 <tr>
-                    <td><?php echo $cliente->getIdCliente(); ?></td>
-                    <td><?php echo $cliente->getNomeCliente(); ?></td>
-                    <td><?php echo $cliente->getCpfCliente(); ?></td>
+                    <td><?php echo $funcionario->getIdFuncionario(); ?></td>
+                    <td><?php echo $funcionario->getNomeFuncionario(); ?></td>
+                    <td><?php echo $funcionario->getCpfFuncionario(); ?></td>
+                    <td><?php echo $funcionario->getFuncaoFuncionario(); ?></td>
                     <td width="20%">
-                        <a href="/clientes/visualiza/<?php echo $cliente->getIdCliente(); ?>" class="btn btn-purple btn-square"><i class="fa fa-search"></i> Visualizar</a>
-                        <a href="/clientes/edita/<?php echo $cliente->getIdCliente(); ?>" class="btn btn-blue btn-square"><i class="fa fa-edit"></i> Editar</a>
-                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Apagar" class="delete_open btn btn-red btn-square" onclick="deletaCliente(<?php echo $cliente->getIdCliente(); ?>, '<?php echo $cliente->getNomeCliente(); ?>');"><i class="fa fa-trash-o"></i> Deletar</a>
+                        <a href="/funcionarios/visualiza/<?php echo $funcionario->getIdFuncionario(); ?>" class="btn btn-purple btn-square"><i class="fa fa-search"></i> Visualizar</a>
+                        <a href="/funcionarios/edita/<?php echo $funcionario->getIdFuncionario(); ?>" class="btn btn-blue btn-square"><i class="fa fa-edit"></i> Editar</a>
+                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Apagar" class="delete_open btn btn-red btn-square" onclick="deletaFuncionario(<?php echo $funcionario->getIdFuncionario(); ?>, '<?php echo $funcionario->getNomeFuncionario(); ?>');"><i class="fa fa-trash-o"></i> Deletar</a>
                     </td>
                 </tr>
                 <?php } ?>
@@ -83,12 +85,12 @@
     <div class="logout-message">
         <br />
         <h3>
-            <i class="fa fa-sign-out text-green"></i> Deseja Apagar <b id="nome_cliente_apagar">--</b>?
+            <i class="fa fa-sign-out text-green"></i> Deseja Apagar <b id="nome_funcionario_apagar">--</b>?
         </h3>
         <p>Clique em "Sim" para apagar este usuário.</p>
         <ul class="list-inline">
             <li>
-                <a href="#" class="btn btn-green" id="url_cliente_apagar">
+                <a href="#" class="btn btn-green" id="url_funcionario_apagar">
                     <strong>Sim</strong>
                 </a>
             </li>
@@ -101,9 +103,9 @@
 <!-- /#delete -->
 
 <script>
-    function deletaCliente(id, nome)
+    function deletaFuncionario(id, nome)
     {
-        $('#nome_cliente_apagar').html(nome);
-        $('#url_cliente_apagar').attr('href', '/clientes/deleta/' + id);
+        $('#nome_funcionario_apagar').html(nome);
+        $('#url_funcionario_apagar').attr('href', '/funcionarios/deleta/' + id);
     }
 </script>

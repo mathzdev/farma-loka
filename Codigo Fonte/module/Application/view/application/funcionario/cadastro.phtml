@@ -23,29 +23,29 @@
                 weekStart: 0
             };
 
-            jQuery('#dt_nascimento_cliente').datepicker({
+            jQuery('#dt_nascimento_funcionario').datepicker({
                 format: 'dd/mm/yyyy',
                 language: 'pt_BR',
                 autoclose: true,
                 todayHighlight: true
             });
 
-            jQuery('#cpf_cliente').mask('000.000.000-00');
-            jQuery('#telefone_cliente').mask('(00) 0000-00000');
-            jQuery('#dt_nascimento_cliente').mask('00/00/0000');
-            jQuery('#celular_cliente').mask('(00) 0000-00000');
-            jQuery('#cep_cliente').mask('00.000-000');
+            jQuery('#cpf_funcionario').mask('000.000.000-00');
+            jQuery('#telefone_funcionario').mask('(00) 0000-00000');
+            jQuery('#dt_nascimento_funcionario').mask('00/00/0000');
+            jQuery('#celular_funcionario').mask('(00) 0000-00000');
+            jQuery('#cep_funcionario').mask('00.000-000');
 
-            jQuery('#uf_cliente').change(function () {
-                jQuery('#cidade_cliente').html('<option value="">Carregando...</option>');
+            jQuery('#uf_funcionario').change(function () {
+                jQuery('#cidade_funcionario').html('<option value="">Carregando...</option>');
                 jQuery.ajax({
                     url: '/ajax/cidades/' + jQuery(this).val(),
                     type: 'GET',
                     dataType: 'JSON',
                     success: function( json ) {
-                        jQuery('#cidade_cliente').html('<option value="">Selecionar cidade</option>');
+                        jQuery('#cidade_funcionario').html('<option value="">Selecionar cidade</option>');
                         jQuery.each(json, function(i, value) {
-                            jQuery('#cidade_cliente').append(jQuery('<option>').text(value.nomeCidade).attr('value', value.idCidade));
+                            jQuery('#cidade_funcionario').append(jQuery('<option>').text(value.nomeCidade).attr('value', value.idCidade));
                         });
                     }
                 });
@@ -58,11 +58,11 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="page-title">
-            <h1>Clientes
+            <h1>Funcionários
                 <small>Cadastrar</small>
             </h1>
             <ol class="breadcrumb">
-                <li class="active"><i class="fa fa-users"></i> Clientes</li>
+                <li class="active"><i class="fa fa-users"></i> Funcionários</li>
             </ol>
         </div>
     </div>
@@ -80,13 +80,13 @@
             echo '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção!</strong> ' . $this->mensagem . '</div>';
         }
         ?>
-        <a href="/clientes" class="btn btn-default btn-square">Listar Clientes</a>
+        <a href="/funcionarios" class="btn btn-default btn-square">Listar Funcionários</a>
         <br />
         <br />
         <div class="portlet portlet-green">
             <div class="portlet-heading">
                 <div class="portlet-title">
-                    <h4>Cadastro de Cliente</h4>
+                    <h4>Cadastro de Funcionário</h4>
                 </div>
                 <div class="portlet-widgets">
                     <a data-toggle="collapse" data-parent="#accordion" href="#horizontalFormExample"><i class="fa fa-chevron-down"></i></a>
@@ -99,81 +99,81 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Nome</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nome_cliente" name="nome_cliente" placeholder="Nome" required="required">
+                                <input type="text" class="form-control" id="nome_funcionario" name="nome_funcionario" placeholder="Nome" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">CPF</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="cpf_cliente" name="cpf_cliente" placeholder="CPF" required="required">
+                                <input type="text" class="form-control" id="cpf_funcionario" name="cpf_funcionario" placeholder="CPF" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">RG</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="rg_cliente" name="rg_cliente" placeholder="RG" required="required">
+                                <input type="text" class="form-control" id="rg_funcionario" name="rg_funcionario" placeholder="RG" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Telefone</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="telefone_cliente" name="telefone_cliente" placeholder="Telefone" required="required">
+                                <input type="text" class="form-control" id="telefone_funcionario" name="telefone_funcionario" placeholder="Telefone" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Celular</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="celular_cliente" name="celular_cliente" placeholder="Celular" required="required">
+                                <input type="text" class="form-control" id="celular_funcionario" name="celular_funcionario" placeholder="Celular" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Data de Nascimento</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="dt_nascimento_cliente" name="dt_nascimento_cliente" placeholder="Data de Nascimento" required="required">
+                                <input type="text" class="form-control" id="dt_nascimento_funcionario" name="dt_nascimento_funcionario" placeholder="Data de Nascimento" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">E-mail</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="email_cliente" name="email_cliente" placeholder="E-mail" required="required">
+                                <input type="text" class="form-control" id="email_funcionario" name="email_funcionario" placeholder="E-mail" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Sexo</label>
                             <div class="col-sm-10">
-                                <label class="radio-inline"><input name="sexo_cliente" value="Masculino" type="radio"> Masculino</label>
-                                <label class="radio-inline"><input name="sexo_cliente" value="Feminino" type="radio"> Feminino</label>
-                                <label class="radio-inline"><input name="sexo_cliente" value="Outro" type="radio"> Outro</label>
+                                <label class="radio-inline"><input name="sexo_funcionario" value="Masculino" type="radio"> Masculino</label>
+                                <label class="radio-inline"><input name="sexo_funcionario" value="Feminino" type="radio"> Feminino</label>
+                                <label class="radio-inline"><input name="sexo_funcionario" value="Outro" type="radio"> Outro</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">CEP</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="cep_cliente" name="cep_cliente" placeholder="CEP" required="required">
+                                <input type="text" class="form-control" id="cep_funcionario" name="cep_funcionario" placeholder="CEP" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Endereço</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="endereco_cliente" name="endereco_cliente" placeholder="Endereço" required="required">
+                                <input type="text" class="form-control" id="endereco_funcionario" name="endereco_funcionario" placeholder="Endereço" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Número</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="numero_cliente" name="numero_cliente" placeholder="Número" required="required">
+                                <input type="text" class="form-control" id="numero_funcionario" name="numero_funcionario" placeholder="Número" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Complemento</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="complemento_cliente" name="complemento_cliente" placeholder="Complemento" required="required">
+                                <input type="text" class="form-control" id="complemento_funcionario" name="complemento_funcionario" placeholder="Complemento" required="required">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">UF</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="uf_cliente" id="uf_cliente">
+                                <select class="form-control" name="uf_funcionario" id="uf_funcionario">
                                     <option value="">Selecione</option>
                                     <?php foreach ($estados as $estado) { ?>
                                     <option value="<?php echo $estado->getIdEstado(); ?>"><?php echo $estado->getUfEstado(); ?></option>
@@ -184,15 +184,21 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Cidade</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="cidade_cliente" id="cidade_cliente">
+                                <select class="form-control" name="cidade_funcionario" id="cidade_funcionario">
                                     <option value="">Selecione Estado</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Foto</label>
+                            <label for="inputEmail3" class="col-sm-2 control-label">Função</label>
                             <div class="col-sm-10">
-                                <input type="file" id="foto_cliente" name="foto_cliente">
+                                <select class="form-control" name="funcao_funcionario" id="funcao_funcionario">
+                                    <option value="">Selecione Função</option>
+                                    <option value="Atendente">Atendente</option>
+                                    <option value="Caixa">Caixa</option>
+                                    <option value="Gerente">Gerente</option>
+                                    <option value="Motoboy">Motoboy</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
