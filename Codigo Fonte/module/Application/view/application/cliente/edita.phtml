@@ -52,22 +52,24 @@
 
             jQuery('#uf_cliente').val(<?php echo $this->cliente->getUfCliente(); ?>);
 
-            jQuery.ajax({
-                url: '/ajax/cidades/' + jQuery('#uf_cliente').val(),
-                type: 'GET',
-                dataType: 'JSON',
-                success: function( json ) {
-                    jQuery('#cidade_cliente').html('<option value="">Selecione Estado</option>');
+            setTimeout(function() {
+                jQuery.ajax({
+                    url: '/ajax/cidades/' + jQuery('#uf_cliente').val(),
+                    type: 'GET',
+                    dataType: 'JSON',
+                    success: function( json ) {
+                        jQuery('#cidade_cliente').html('<option value="">Selecione Estado</option>');
 
-                    jQuery.each(json, function(i, value) {
-                        jQuery('#cidade_cliente').append(jQuery('<option>').text(value.nomeCidade).attr('value', value.idCidade));
-                    });
+                        jQuery.each(json, function(i, value) {
+                            jQuery('#cidade_cliente').append(jQuery('<option>').text(value.nomeCidade).attr('value', value.idCidade));
+                        });
 
-                    jQuery('#cidade_cliente').val(<?php echo $this->cliente->getCidadeCliente(); ?>);
-                }
-            });
+                        jQuery('#cidade_cliente').val(<?php echo $this->cliente->getCidadeCliente(); ?>);
+                    }
+                });
+            }, 1000);
         });
-    }, 100);
+    }, 1000);
 </script>
 <!-- begin PAGE TITLE AREA -->
 <!-- Use this section for each page's title and breadcrumb layout. In this example a date range picker is included within the breadcrumb. -->
