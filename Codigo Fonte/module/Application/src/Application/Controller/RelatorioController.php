@@ -29,10 +29,12 @@ class RelatorioController extends AbstractController
          */
         $countClientes = $this->getService('Application\Service\Cliente')->findAll();
         $countFuncionarios = $this->getService('Application\Service\Funcionario')->findAll();
+        $countFornecedores = $this->getService('Application\Service\Fornecedor')->findAll();
 
         $arrReturn = array(
             'countClientes' => count($countClientes),
             'countFuncionarios' => count($countFuncionarios),
+            'countFornecedores' => count($countFornecedores),
         );
 
         return new ViewModel($arrReturn);

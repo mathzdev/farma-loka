@@ -11,11 +11,11 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="page-title">
-            <h1>Funcionários
+            <h1>Fornecedores
                 <small>Listar</small>
             </h1>
             <ol class="breadcrumb">
-                <li class="active"><i class="fa fa-users"></i> Funcionários</li>
+                <li class="active"><i class="fa fa-users"></i> Fornecedores</li>
             </ol>
         </div>
     </div>
@@ -28,13 +28,13 @@
     <!-- Inline Form Example -->
     <!-- .col-lg-12 (open) -->
     <div class="col-lg-12">
-        <a href="/funcionarios/cadastro" class="btn btn-green btn-square">Cadastrar Funcionário</a>
+        <a href="/fornecedores/cadastro" class="btn btn-green btn-square">Cadastrar Fornecedor</a>
         <br />
         <br />
         <div class="portlet portlet-default">
             <div class="portlet-heading">
                 <div class="portlet-title">
-                    <h4>Funcionários</h4>
+                    <h4>Fornecedores</h4>
                 </div>
                 <div class="portlet-widgets">
                     <a data-toggle="collapse" data-parent="#accordion" href="#inlineFormExample"><i class="fa fa-chevron-down"></i></a>
@@ -49,22 +49,24 @@
                 <tr>
                     <th>Código</th>
                     <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Função</th>
+                    <th>Razão Social</th>
+                    <th>CNPJ</th>
+                    <th>Telefone</th>
                     <th>Ações</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($this->funcionarios as $funcionario) { ?>
+                <?php foreach ($this->fornecedores as $fornecedor) { ?>
                 <tr>
-                    <td><?php echo $funcionario->getIdFuncionario(); ?></td>
-                    <td><?php echo $funcionario->getNomeFuncionario(); ?></td>
-                    <td><?php echo $funcionario->getCpfFuncionario(); ?></td>
-                    <td><?php echo $funcionario->getFuncaoFuncionario(); ?></td>
+                    <td><?php echo $fornecedor->getIdFornecedor(); ?></td>
+                    <td><?php echo $fornecedor->getNomeFornecedor(); ?></td>
+                    <td><?php echo $fornecedor->getRazaoSocialFornecedor(); ?></td>
+                    <td><?php echo $fornecedor->getCnpjFornecedor(); ?></td>
+                    <td><?php echo $fornecedor->getTelefoneFornecedor(); ?></td>
                     <td width="20%">
-                        <a href="/funcionarios/visualiza/<?php echo $funcionario->getIdFuncionario(); ?>" class="btn btn-purple btn-square"><i class="fa fa-search"></i> Visualizar</a>
-                        <a href="/funcionarios/edita/<?php echo $funcionario->getIdFuncionario(); ?>" class="btn btn-blue btn-square"><i class="fa fa-edit"></i> Editar</a>
-                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Apagar" class="delete_open btn btn-red btn-square" onclick="deletaFuncionario(<?php echo $funcionario->getIdFuncionario(); ?>, '<?php echo $funcionario->getNomeFuncionario(); ?>');"><i class="fa fa-trash-o"></i> Deletar</a>
+                        <a href="/fornecedores/visualiza/<?php echo $fornecedor->getIdFornecedor(); ?>" class="btn btn-purple btn-square"><i class="fa fa-search"></i> Visualizar</a>
+                        <a href="/fornecedores/edita/<?php echo $fornecedor->getIdFornecedor(); ?>" class="btn btn-blue btn-square"><i class="fa fa-edit"></i> Editar</a>
+                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Apagar" class="delete_open btn btn-red btn-square" onclick="deletaFornecedor(<?php echo $fornecedor->getIdFornecedor(); ?>, '<?php echo $fornecedor->getNomeFornecedor(); ?>');"><i class="fa fa-trash-o"></i> Deletar</a>
                     </td>
                 </tr>
                 <?php } ?>
@@ -85,12 +87,12 @@
     <div class="logout-message">
         <br />
         <h3>
-            <i class="fa fa-sign-out text-green"></i> Deseja Apagar <b id="nome_funcionario_apagar">--</b>?
+            <i class="fa fa-sign-out text-green"></i> Deseja Apagar <b id="nome_fornecedor_apagar">--</b>?
         </h3>
-        <p>Clique em "Sim" para apagar este funcionário.</p>
+        <p>Clique em "Sim" para apagar este fornecedor.</p>
         <ul class="list-inline">
             <li>
-                <a href="#" class="btn btn-green" id="url_funcionario_apagar">
+                <a href="#" class="btn btn-green" id="url_fornecedor_apagar">
                     <strong>Sim</strong>
                 </a>
             </li>
@@ -103,9 +105,9 @@
 <!-- /#delete -->
 
 <script>
-    function deletaFuncionario(id, nome)
+    function deletaFornecedor(id, nome)
     {
-        $('#nome_funcionario_apagar').html(nome);
-        $('#url_funcionario_apagar').attr('href', '/funcionarios/deleta/' + id);
+        $('#nome_fornecedor_apagar').html(nome);
+        $('#url_fornecedor_apagar').attr('href', '/fornecedores/deleta/' + id);
     }
 </script>
