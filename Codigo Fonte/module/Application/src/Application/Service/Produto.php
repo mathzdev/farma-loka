@@ -134,4 +134,14 @@ class Produto extends AbstractService
             return false;
         }
     }
+
+    /**
+     * Retorna a quantidade de produtos por fornecedores que temos
+     *
+     * @return mixed
+     */
+    public function produtosFornecedores()
+    {
+        return $this->getRepository()->produtosFornecedores();
+    }
 }

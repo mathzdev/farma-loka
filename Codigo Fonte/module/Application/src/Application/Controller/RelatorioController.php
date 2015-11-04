@@ -62,4 +62,18 @@ class RelatorioController extends AbstractController
 
         return new ViewModel($arrReturn);
     }
+
+    /**
+     * Rota do relatorio produtos x fornecedores
+     */
+    public function produtosFornecedoresAction()
+    {
+        $produtosFornecedores = $this->getService('Application\Service\Produto')->produtosFornecedores();
+
+        $arrReturn = array(
+            'produtosFornecedores' => $produtosFornecedores,
+        );
+
+        return new ViewModel($arrReturn);
+    }
 }
