@@ -7,6 +7,8 @@
  */
 
 $sessionUser = new \Application\Controller\AbstractController();
+$routeParam = explode('/', $_SERVER['REQUEST_URI']);
+$routeName = $routeParam[1];
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -120,7 +122,7 @@ $sessionUser = new \Application\Controller\AbstractController();
                 <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#users">
                     <i class="fa fa-gears"></i> Sistema <i class="fa fa-caret-down"></i>
                 </a>
-                <ul class="collapse nav" id="users">
+                <ul class="collapse nav <?php if (in_array($routeName, array('meus-dados', 'usuarios'))) { echo 'in'; } ?>" id="users">
                     <li>
                         <a href="/meus-dados">
                             <i class="fa fa-angle-double-right"></i> Meus Dados
@@ -139,7 +141,7 @@ $sessionUser = new \Application\Controller\AbstractController();
                 <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#charts">
                     <i class="fa fa-money"></i> Caixa <i class="fa fa-caret-down"></i>
                 </a>
-                <ul class="collapse nav" id="charts">
+                <ul class="collapse nav <?php if (in_array($routeName, array('pedidos'))) { echo 'in'; } ?>" id="charts">
                     <li>
                         <a href="/pedidos">
                             <i class="fa fa-angle-double-right"></i> Pedidos
@@ -153,7 +155,7 @@ $sessionUser = new \Application\Controller\AbstractController();
                 <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#forms">
                     <i class="fa fa-wrench"></i> Serviços <i class="fa fa-caret-down"></i>
                 </a>
-                <ul class="collapse nav" id="forms">
+                <ul class="collapse nav <?php if (in_array($routeName, array('clientes', 'fornecedores', 'funcionarios', 'produtos'))) { echo 'in'; } ?>" id="forms">
                     <li>
                         <a href="/clientes">
                             <i class="fa fa-angle-double-right"></i> Clientes
@@ -180,7 +182,7 @@ $sessionUser = new \Application\Controller\AbstractController();
                 <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#relatories">
                     <i class="fa fa-bar-chart-o"></i> Relatórios <i class="fa fa-caret-down"></i>
                 </a>
-                <ul class="collapse nav" id="relatories">
+                <ul class="collapse nav <?php if (in_array($routeName, array('relatorios'))) { echo 'in'; } ?>" id="relatories">
                     <li>
                         <a href="/relatorios/funcionarios-cargos">
                             <i class="fa fa-angle-double-right"></i> Funcionários x Cargo
