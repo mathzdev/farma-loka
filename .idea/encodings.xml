@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/Codigo Fonte/module/Application/src/Application/Controller/ClienteController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Codigo Fonte/module/Application/src/Application/Controller/FornecedorController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Codigo Fonte/module/Application/src/Application/Controller/FuncionarioController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Codigo Fonte/module/Application/src/Application/Controller/ProdutoController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Codigo Fonte/module/Application/src/Application/Service/Cliente.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Codigo Fonte/module/Application/src/Application/Service/Fornecedor.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Codigo Fonte/module/Application/src/Application/Service/Funcionario.php" charset="UTF-8" />

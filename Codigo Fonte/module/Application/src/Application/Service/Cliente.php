@@ -103,6 +103,10 @@ class Cliente extends AbstractService
 
         $entidade = $this->find($idCliente);
 
+        if ($arrParam['foto_cliente'] != null) {
+            unlink('public' . $entidade->getFotoCliente());
+        }
+
         try {
             $entidade->setNomeCliente($arrUpdate['nomeCliente']);
             $entidade->setCpfCliente($arrUpdate['cpfCliente']);

@@ -152,7 +152,7 @@
                             <div class="col-sm-10">
                                 <select class="form-control" name="uf_fornecedor" id="uf_fornecedor">
                                     <option value="">Selecione</option>
-                                    <?php foreach ($estados as $estado) { ?>
+                                    <?php foreach ($this->estados as $estado) { ?>
                                     <option value="<?php echo $estado->getIdEstado(); ?>"><?php echo $estado->getUfEstado(); ?></option>
                                     <?php } ?>
                                 </select>

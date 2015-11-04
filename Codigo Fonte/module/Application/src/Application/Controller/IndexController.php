@@ -25,16 +25,18 @@ class IndexController extends AbstractController
     public function indexAction()
     {
         /**
-         * Obs alterar tambem na index controller
+         * Obs alterar tambem na relatorio controller
          */
         $countClientes = $this->getService('Application\Service\Cliente')->findAll();
         $countFuncionarios = $this->getService('Application\Service\Funcionario')->findAll();
         $countFornecedores = $this->getService('Application\Service\Fornecedor')->findAll();
+        $countProdutos = $this->getService('Application\Service\Produto')->findAll();
 
         $arrReturn = array(
             'countClientes' => count($countClientes),
             'countFuncionarios' => count($countFuncionarios),
             'countFornecedores' => count($countFornecedores),
+            'countProdutos' => count($countProdutos),
         );
 
         return new ViewModel($arrReturn);
