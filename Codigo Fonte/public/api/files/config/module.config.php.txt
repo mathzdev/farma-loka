@@ -51,7 +51,7 @@ return array(
                     ),
                 ),
             ),
-            'usuario' => array(
+            'usuarios' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
                     'route'    => '/usuarios[/:action][/:id]',
@@ -62,6 +62,106 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Application\Controller\Usuario',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'meus-dados' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/meus-dados',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Usuario',
+                        'action'     => 'meusDados',
+                    ),
+                ),
+            ),
+            'clientes' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/clientes[/:action][/:id]',
+                    'constraints' => array(
+                        'controller' => 'Application\Controller\Cliente',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Cliente',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'ajax' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/ajax[/:action][/:id]',
+                    'constraints' => array(
+                        'controller' => 'Application\Controller\Ajax',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Ajax',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'funcionarios' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/funcionarios[/:action][/:id]',
+                    'constraints' => array(
+                        'controller' => 'Application\Controller\Funcionario',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Funcionario',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'relatorios' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/relatorios[/:action][/:id]',
+                    'constraints' => array(
+                        'controller' => 'Application\Controller\Relatorio',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Relatorio',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'fornecedores' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/fornecedores[/:action][/:id]',
+                    'constraints' => array(
+                        'controller' => 'Application\Controller\Fornecedor',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Fornecedor',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            'produtos' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/produtos[/:action][/:id]',
+                    'constraints' => array(
+                        'controller' => 'Application\Controller\Produto',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Produto',
                         'action'     => 'index',
                     ),
                 ),
@@ -121,7 +221,13 @@ return array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Autenticacao' => 'Application\Controller\AutenticacaoController',
-            'Application\Controller\Usuario' => 'Application\Controller\UsuarioController'
+            'Application\Controller\Usuario' => 'Application\Controller\UsuarioController',
+            'Application\Controller\Cliente' => 'Application\Controller\ClienteController',
+            'Application\Controller\Ajax' => 'Application\Controller\AjaxController',
+            'Application\Controller\Funcionario' => 'Application\Controller\FuncionarioController',
+            'Application\Controller\Relatorio' => 'Application\Controller\RelatorioController',
+            'Application\Controller\Fornecedor' => 'Application\Controller\FornecedorController',
+            'Application\Controller\Produto' => 'Application\Controller\ProdutoController',
         ),
     ),
     'view_manager' => array(

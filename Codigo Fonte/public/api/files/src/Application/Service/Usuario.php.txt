@@ -138,4 +138,27 @@ class Usuario extends AbstractService
             return false;
         }
     }
+
+    /**
+     * Retorna o corpo html do email para a rota esqueci minha senha
+     *
+     * @param $user
+     * @return string
+     */
+    public function getCorpoEmailEsqueciSenha($user)
+    {
+        $corpoEmail = '';
+        $corpoEmail .= '<p><a href="http://farmaloka.cf/" target="_blank"><img alt="" src="https://trello-attachments.s3.amazonaws.com/561eb595cab6bb5a01531e0c/775x150/7a207d50c947327c27f63191d64065da/logoFarmaLoka.png" style="height:75px; width:388px" /></a></p>';
+        $corpoEmail .= '<p><span style="font-size:16px">Ol&aacute; <strong>' . $user->getNomeUsuario() . '</strong>, voc&ecirc; esqueceu sua senha n&eacute;? kkk...</span></p>';
+        $corpoEmail .= '<p><span style="font-size:16px">Tudo bem ok, demos um jeito e recuperamos ela rapidinho :D</span></p>';
+        $corpoEmail .= '<p><span style="font-size:16px">Aqui est&atilde;o seus dados:</span></p>';
+        $corpoEmail .= '<p><span style="font-size:16px"><strong>E-mail:</strong> ' . $user->getEmailUsuario() . '</span></p>';
+        $corpoEmail .= '<p><span style="font-size:16px"><strong>Senha:</strong> ' . $user->getSenhaUsuario() . '</span></p>';
+        $corpoEmail .= '<p>Continue utilizando nosso sistema ok? ;)</p>';
+        $corpoEmail .= '<p><a href="http://farmaloka.cf/" target="_blank">http://farmaloka.cf/</a></p>';
+        $corpoEmail .= '<hr />';
+        $corpoEmail .= '<p><em>Aten&ccedil;&atilde;o, este &eacute; um e-mail autom&aacute;tico, favor n&atilde;o responder. Obrigado, Farma Loka System&#39;s.</em></p>';
+
+        return $corpoEmail;
+    }
 }

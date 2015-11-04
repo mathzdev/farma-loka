@@ -1,0 +1,84 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: matheuslucio
+ * Date: 25/10/15
+ * Time: 08:54
+ */
+?>
+<!-- begin PAGE TITLE AREA -->
+<!-- Use this section for each page's title and breadcrumb layout. In this example a date range picker is included within the breadcrumb. -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-title">
+            <h1>Produtos
+                <small>Cadastro</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active"><i class="fa fa-users"></i> Produtos</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- end PAGE TITLE AREA -->
+
+<div class="row">
+    <!-- Horizontal Form Example -->
+    <div class="col-lg-12">
+        <a href="/produtos" class="btn btn-default btn-square">Listar Produtos</a>
+        <br />
+        <br />
+        <div class="portlet portlet-green">
+            <div class="portlet-heading">
+                <div class="portlet-title">
+                    <h4>Visualizar Produto</h4>
+                </div>
+                <div class="portlet-widgets">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#horizontalFormExample"><i class="fa fa-chevron-down"></i></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="horizontalFormExample" class="panel-collapse collapse in">
+                <div class="portlet-body">
+                    <form class="form-horizontal" role="form" method="POST" name="upload-form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Nome</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline"><?php echo $this->produto->getNomeProduto(); ?></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Descrição</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline"><pre class="tile blue"><?php echo $this->produto->getDescricaoProduto(); ?></pre></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Valor</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline">R$ <?php echo $this->produto->getValorProduto(); ?></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Fornecedor</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline"><?php echo $this->fornecedor->getNomeFornecedor(); ?></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Foto</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline"><img src="<?php echo $this->produto->getFotoProduto(); ?>" style="max-width: 800px"></label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.portlet -->
+    </div>
+    <!-- /.col-lg-12 (nested) -->
+    <!-- End Horizontal Form Example -->
+</div>

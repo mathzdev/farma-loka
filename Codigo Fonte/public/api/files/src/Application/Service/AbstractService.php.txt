@@ -71,6 +71,24 @@ class AbstractService
     }
 
     /**
+     * Returna um array com registros da tabela
+     *
+     * @param $arr
+     *
+     * @return mixed
+     */
+    public function findBy($arrParam)
+    {
+        $arrFind = array();
+
+        foreach ($arrParam as $key => $param) {
+            $arrFind[$this->camelize($key)] = $param;
+        }
+
+        return $this->getRepository()->findBy($arrFind);
+    }
+
+    /**
      * Returna um registro especifico da tabela
      *
      * @param $id
@@ -107,5 +125,15 @@ class AbstractService
     public function getEntityManager()
     {
         return $this->em;
+    }
+
+    /**
+     * Retorna se esse arquivo e uma imagem
+     *
+     * @param $img
+     * @return bool
+     */
+    public function isImage($img){
+        return (bool) getimagesize($img);
     }
 }

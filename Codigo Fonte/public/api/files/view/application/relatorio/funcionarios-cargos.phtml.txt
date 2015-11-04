@@ -1,0 +1,75 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: matheuslucio
+ * Date: 25/10/15
+ * Time: 08:54
+ */
+?>
+<!-- begin PAGE TITLE AREA -->
+<!-- Use this section for each page's title and breadcrumb layout. In this example a date range picker is included within the breadcrumb. -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-title">
+            <h1>Relatórios
+                <small>Gráfico de Funcionários</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active"><i class="fa fa-dashboard"></i> Gráfico de Funcionários</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- end PAGE TITLE AREA -->
+
+<div class="row">
+    <!-- Inline Form Example -->
+    <!-- .col-lg-12 (open) -->
+    <div class="col-lg-12">
+        <div class="portlet portlet-orange">
+            <div class="portlet-heading">
+                <div class="portlet-title">
+                    <h4>Relatório Gráfico de Funcionários</h4>
+                </div>
+                <div class="portlet-widgets">
+                    <span class="divider"></span>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#donutChart"><i class="fa fa-chevron-down"></i></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="donutChart" class="panel-collapse collapse in">
+                <div class="portlet-body">
+                    <div class="portlet-body">
+                        <div id="morris-chart-donut"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.portlet -->
+    </div>
+    <!-- /.col-lg-12 (nested) -->
+    <!-- End Inline Form Example -->
+</div>
+
+<script>
+    //Morris Donut Chart
+    setTimeout(function() {
+        jQuery(document).ready(function() {
+            Morris.Donut({
+                element: 'morris-chart-donut',
+                data: [
+                    {label: "Atendente", value: <?php echo $this->countAtendente; ?>},
+                    {label: "Caixa", value: <?php echo $this->countCaixa; ?>},
+                    {label: "Gerente", value: <?php echo $this->countGerente; ?>},
+                    {label: "Motoboy", value: <?php echo $this->countMotoboy; ?>}
+                ],
+                resize: true,
+                colors: ['#16a085','#2980b9', '#f39c12', '#e74c3c'],
+//                formatter: function (y) { return y + "%" ;}
+                formatter: function (y) { return y ;}
+            });
+        });
+    }, 100);
+</script>

@@ -66,6 +66,17 @@ class AbstractController extends AbstractActionController
     }
 
     /**
+     * Recebe os arquivos da requisicao e converte para um array
+     *
+     * @return mixed
+     */
+    public function getFiles()
+    {
+        $request = $this->getRequest();
+        return (array) $request->getFiles();
+    }
+
+    /**
      * Verifica se a requisicao e do tipo POST
      *
      * @return mixed
@@ -95,5 +106,21 @@ class AbstractController extends AbstractActionController
     public function getParams()
     {
         return $this->getEvent()->getRouteMatch()->getParams();
+    }
+
+    public function getStmpOptions()
+    {
+        $stmpOptionsArr = array(
+            'host'              => 'mx1.hostinger.com.br',
+            'connection_class'  => 'login',
+            'connection_config' => array(
+                'ssl'       => 'tls',
+                'username' => 'farmaloka@ma-the.us',
+                'password' => 'farmaemailloka456'
+            ),
+            'port' => 587,
+        );
+
+        return $stmpOptionsArr;
     }
 }

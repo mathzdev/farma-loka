@@ -5,6 +5,8 @@
  * Date: 25/10/15
  * Time: 08:54
  */
+
+$sessionUser = new \Application\Controller\AbstractController();
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -34,6 +36,8 @@
     <link href="/css/plugins/morris/morris.css" rel="stylesheet">
     <link href="/css/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet">
     <link href="/css/plugins/datatables/datatables.css" rel="stylesheet">
+    <link href="/css/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="/css/plugins/bootstrap-datepicker/datepicker3.css" rel="stylesheet">
 
     <!-- THEME STYLES - Include these on every page. -->
     <link href="/css/style.css" rel="stylesheet">
@@ -62,7 +66,7 @@
             <i class="fa fa-bars"></i> Menu
         </button>
         <div class="navbar-brand">
-            <a href="index.html" style="color:#fff;">
+            <a href="/" style="color:#fff;">
                 <i class="fa fa-medkit"></i> Farma Loka
             </a>
         </div>
@@ -98,8 +102,8 @@
                     <i class="fa fa-key"></i> Logado como
                 </p>
                 <p class="name tooltip-sidebar-logout">
-                    <?php echo $_SESSION['user_session']['usuario']['nomeUsuario']; ?>
-                    <span class="last-name"><?php echo explode('@', $_SESSION['user_session']['usuario']['emailUsuario'])[0]; ?></span> <a style="color: inherit" class="logout_open" href="#logout" data-toggle="tooltip" data-placement="top" title="Sair"><i class="fa fa-sign-out"></i></a>
+                    <?php echo $sessionUser->getUserSession()->usuario['nomeUsuario']; ?>
+                    <span class="last-name"><?php echo explode('@', $sessionUser->getUserSession()->usuario['emailUsuario'])[0]; ?></span> <a style="color: inherit" class="logout_open" href="#logout" data-toggle="tooltip" data-placement="top" title="Sair"><i class="fa fa-sign-out"></i></a>
                 </p>
                 <div class="clearfix"></div>
             </li>
@@ -118,6 +122,11 @@
                 </a>
                 <ul class="collapse nav" id="users">
                     <li>
+                        <a href="/meus-dados">
+                            <i class="fa fa-angle-double-right"></i> Meus Dados
+                        </a>
+                    </li>
+                    <li>
                         <a href="/usuarios">
                             <i class="fa fa-angle-double-right"></i> Usuários
                         </a>
@@ -132,8 +141,8 @@
                 </a>
                 <ul class="collapse nav" id="charts">
                     <li>
-                        <a href="cadastro-pedido.html">
-                            <i class="fa fa-angle-double-right"></i> Cadastro de Pedido
+                        <a href="/pedidos">
+                            <i class="fa fa-angle-double-right"></i> Pedidos
                         </a>
                     </li>
                 </ul>
@@ -146,23 +155,35 @@
                 </a>
                 <ul class="collapse nav" id="forms">
                     <li>
-                        <a href="cadastro-cliente.html">
-                            <i class="fa fa-angle-double-right"></i> Cadastro de Cliente
+                        <a href="/clientes">
+                            <i class="fa fa-angle-double-right"></i> Clientes
                         </a>
                     </li>
                     <li>
-                        <a href="cadastro-fornecedor.html">
-                            <i class="fa fa-angle-double-right"></i> Cadastro de Fornecedor
+                        <a href="/fornecedores">
+                            <i class="fa fa-angle-double-right"></i> Fornecedores
                         </a>
                     </li>
                     <li>
-                        <a href="cadastro-funcionario.html">
-                            <i class="fa fa-angle-double-right"></i> Cadastro de Funcionário
+                        <a href="/funcionarios">
+                            <i class="fa fa-angle-double-right"></i> Funcionários
                         </a>
                     </li>
                     <li>
-                        <a href="cadastro-produto.html">
-                            <i class="fa fa-angle-double-right"></i> Cadastro de Produto
+                        <a href="/produtos">
+                            <i class="fa fa-angle-double-right"></i> Produtos
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="panel">
+                <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle" data-target="#relatories">
+                    <i class="fa fa-bar-chart-o"></i> Relatórios <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="collapse nav" id="relatories">
+                    <li>
+                        <a href="/relatorios/funcionarios-cargos">
+                            <i class="fa fa-angle-double-right"></i> Funcionários x Cargo
                         </a>
                     </li>
                 </ul>
@@ -229,7 +250,6 @@
 <script src="/js/plugins/popupoverlay/logout.js"></script>
 <!-- HISRC Retina Images -->
 <script src="/js/plugins/hisrc/hisrc.js"></script>
-
 <!-- PAGE LEVEL PLUGIN SCRIPTS -->
 <!-- HubSpot Messenger -->
 <script src="/js/plugins/messenger/messenger.min.js"></script>
@@ -256,11 +276,16 @@
 <!-- DataTables -->
 <script src="/js/plugins/datatables/jquery.dataTables.js"></script>
 <script src="/js/plugins/datatables/datatables-bs3.js"></script>
-
 <!-- THEME SCRIPTS -->
-<script src="/js/flex.js"></script>
+<script src="/js/demo/dashboard-demo.js"></script>
 <script src="/js/demo/dashboard-demo.js"></script>
 <script src="/js/demo/advanced-tables-demo.js"></script>
+<script src="/js/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+<script src="/js/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="/js/demo/jquery.mask.min.js"></script>
+<!-- Morris Demo/Dummy Data -->
+<script src="/js/plugins/morris/morris-demo-data.js"></script>
+<script src="/js/flex.js"></script>
 
 </body>
 
