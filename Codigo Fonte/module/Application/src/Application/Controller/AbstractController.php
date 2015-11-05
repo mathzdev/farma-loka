@@ -108,6 +108,11 @@ class AbstractController extends AbstractActionController
         return $this->getEvent()->getRouteMatch()->getParams();
     }
 
+    /**
+     * Retorna os dados Stmp para envio de email
+     *
+     * @return array
+     */
     public function getStmpOptions()
     {
         $stmpOptionsArr = array(

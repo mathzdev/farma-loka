@@ -173,7 +173,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">UF</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="uf_funcionario" id="uf_funcionario">
+                                <select class="form-control" name="uf_funcionario" id="uf_funcionario" required="required">
                                     <option value="">Selecione</option>
                                     <?php foreach ($this->estados as $estado) { ?>
                                     <option value="<?php echo $estado->getIdEstado(); ?>"><?php echo $estado->getUfEstado(); ?></option>
@@ -184,7 +184,7 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Cidade</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="cidade_funcionario" id="cidade_funcionario">
+                                <select class="form-control" name="cidade_funcionario" id="cidade_funcionario" required="required">
                                     <option value="">Selecione Estado</option>
                                 </select>
                             </div>
@@ -192,7 +192,7 @@
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Função</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="funcao_funcionario" id="funcao_funcionario">
+                                <select class="form-control" name="funcao_funcionario" id="funcao_funcionario" required="required">
                                     <option value="">Selecione Função</option>
                                     <option value="Atendente">Atendente</option>
                                     <option value="Caixa">Caixa</option>
