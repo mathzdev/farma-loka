@@ -45,8 +45,8 @@
                     <div class="col-md-6 invoice-terms">
                         <h3>Fatura #<?php echo $this->pedido->getIdPedido(); ?></h3>
                         <p>
-                            Data do pedido: <?php echo date('d/m/Y', $this->pedido->getdtPedido()); ?> <br>
-                            Status do pedido: <?php
+                            <b>Data do pedido:</b> <?php echo date('d/m/Y', $this->pedido->getdtPedido()); ?> <br>
+                            <b>Status do pedido:</b> <?php
                             switch ($this->pedido->getStatusPedido()) {
                                 case 1:
                                     echo "Não Cancelado";
@@ -159,7 +159,7 @@
                             </table>
                         </div>
                         <!-- /.table-responsive -->
-                        <a class="btn btn-green" href="/pedidos/pdf/<?php echo $this->pedido->getIdPedido(); ?>"><i class="fa fa-download"></i> Baixar Fatura no formato .PDF</a>
+                        <a class="btn btn-green btn-square" href="/pedidos/pdf/<?php echo $this->pedido->getIdPedido(); ?>"><i class="fa fa-download"></i> Baixar Fatura no formato .PDF</a>
                     </div>
                 </div>
                 <!-- /.row -->

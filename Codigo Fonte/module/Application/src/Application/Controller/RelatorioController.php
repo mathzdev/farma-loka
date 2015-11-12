@@ -25,7 +25,7 @@ class RelatorioController extends AbstractController
     public function indexAction()
     {
         /**
-         * Obs alterar tambem na relatorio controller
+         * Obs alterar tambem na index controller
          */
         $countClientes = $this->getService('Application\Service\Cliente')->findAll();
         $countFuncionarios = $this->getService('Application\Service\Funcionario')->findAll();
