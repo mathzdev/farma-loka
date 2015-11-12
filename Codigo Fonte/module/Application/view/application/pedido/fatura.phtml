@@ -1,0 +1,171 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: matheuslucio
+ * Date: 25/10/15
+ * Time: 08:54
+ */
+?>
+<!-- begin PAGE TITLE ROW -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-title">
+            <h1>Pedidos
+                <small>Fatura</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active"><i class="fa fa-users"></i> Pedidos</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- end PAGE TITLE ROW -->
+
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-12">
+        <a href="/pedidos" class="btn btn-default btn-square">Listar Pedidos</a>
+        <br />
+        <br />
+        <div class="portlet portlet-default">
+            <div class="portlet-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1><i class="fa fa-medkit"></i> Farma Loka</h1>
+                        <br>
+                        <address>
+                            <strong>Farma Loka System's.</strong>
+                            <br>QR 120 Conjunto F
+                            <br>Santa Maria, DF
+                            <br>
+                            <abbr title="Telefone">Tel:</abbr> (61) 8313-3683
+                        </address>
+                    </div>
+                    <div class="col-md-6 invoice-terms">
+                        <h3>Fatura #<?php echo $this->pedido->getIdPedido(); ?></h3>
+                        <p>
+                            Data do pedido: <?php echo date('d/m/Y', $this->pedido->getdtPedido()); ?> <br>
+                            Status do pedido: <?php
+                            switch ($this->pedido->getStatusPedido()) {
+                                case 1:
+                                    echo "Não Cancelado";
+                                    break;
+
+                                case 2:
+                                    echo "Cancelado";
+                                    break;
+
+                                default:
+                                    echo "Indefinido";
+                                    break;
+                            }
+                            ?>
+                        </p>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Cliente</h3>
+                        <address>
+                            <strong><?php echo $this->cliente->getNomeCliente(); ?></strong>
+                            <br><?php echo $this->cliente->getEnderecoCliente(); ?>, <?php echo $this->cliente->getNumeroCliente(); ?>, <?php echo $this->cliente->getComplementoCliente(); ?>
+                            <br><?php echo $this->cidade->getNomeCidade(); ?>, <?php echo $this->cidade->getUfCidade(); ?>
+                            <br><?php echo $this->cliente->getCepCliente(); ?>
+                            <br>
+                            <abbr title="Telefone">Tel:</abbr> <?php echo $this->cliente->getTelefoneCliente(); ?>
+                            <br>
+                            <abbr title="Celular">Cel:</abbr> <?php echo $this->cliente->getCelularCliente(); ?>
+                        </address>
+                    </div>
+                    <div class="col-md-6 invoice-terms">
+                        <h3>Observações</h3>
+                        <p>
+                            <?php echo $this->pedido->getObsPedido(); ?>
+                        </p>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Funcionários</h3>
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Atendente</th>
+                                <th>Entregador</th>
+                                <th>Caixa</th>
+                                <th>Gerente</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><?php echo $this->atendente->getNomeFuncionario(); ?></td>
+                                    <td><?php echo $this->entregador->getNomeFuncionario(); ?></td>
+                                    <td><?php echo $this->caixa->getNomeFuncionario(); ?></td>
+                                    <td><?php echo $this->gerente->getNomeFuncionario(); ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3>Produtos</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nome</th>
+                                    <th>Quantidade</th>
+                                    <th>Valor Unitário</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $arrProdutos = json_decode($this->pedido->getProdutosPedido());
+
+                                foreach ($arrProdutos as $produto) {
+                                    $objProduto = $this->produtoService->find($produto->idProduto);
+                                    if ($objProduto == null) {
+                                        continue;
+                                    }
+                                    ?>
+
+                                    <tr>
+                                        <td><?php echo $objProduto->getIdProduto(); ?></td>
+                                        <td><?php echo $objProduto->getNomeProduto(); ?></td>
+                                        <td><?php echo $produto->qtdProduto; ?></td>
+                                        <td>R$ <?php echo $objProduto->getValorProduto(); ?></td>
+                                    </tr>
+
+                                <?php } ?>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="text-right"><strong>Total:</strong>
+                                    </td>
+                                    <td><strong>R$ <?php echo $this->pedido->getValorPedido(); ?></strong>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                        <a class="btn btn-green" href="/pedidos/pdf/<?php echo $this->pedido->getIdPedido(); ?>"><i class="fa fa-download"></i> Baixar Fatura no formato .PDF</a>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->

@@ -34,6 +34,7 @@ return array(
     'DoctrineORMModuleTest\\' => array($vendorDir . '/doctrine/doctrine-orm-module/tests'),
     'DoctrineModule\\' => array($vendorDir . '/doctrine/doctrine-module/src'),
     'DoctrineModuleTest\\' => array($vendorDir . '/doctrine/doctrine-module/tests'),
+    'DOMPDFModule' => array($vendorDir . '/dino/dompdf-module/src'),
     'Cilex\\Provider\\Console' => array($vendorDir . '/cilex/console-service-provider/src'),
     'Cilex\\Provider' => array($vendorDir . '/phpdocumentor/phpdocumentor/src'),
     'Cilex' => array($vendorDir . '/cilex/cilex/src'),

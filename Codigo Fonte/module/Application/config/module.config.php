@@ -166,6 +166,21 @@ return array(
                     ),
                 ),
             ),
+            'pedidos' => array(
+                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'options' => array(
+                    'route'    => '/pedidos[/:action][/:id]',
+                    'constraints' => array(
+                        'controller' => 'Application\Controller\Pedido',
+                        'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Pedido',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -228,6 +243,7 @@ return array(
             'Application\Controller\Relatorio' => 'Application\Controller\RelatorioController',
             'Application\Controller\Fornecedor' => 'Application\Controller\FornecedorController',
             'Application\Controller\Produto' => 'Application\Controller\ProdutoController',
+            'Application\Controller\Pedido' => 'Application\Controller\PedidoController',
         ),
     ),
     'view_manager' => array(
