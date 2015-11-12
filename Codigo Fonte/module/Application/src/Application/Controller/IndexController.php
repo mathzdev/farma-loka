@@ -31,12 +31,14 @@ class IndexController extends AbstractController
         $countFuncionarios = $this->getService('Application\Service\Funcionario')->findAll();
         $countFornecedores = $this->getService('Application\Service\Fornecedor')->findAll();
         $countProdutos = $this->getService('Application\Service\Produto')->findAll();
+        $countPedidos = $this->getService('Application\Service\Pedido')->findAll();
 
         $arrReturn = array(
             'countClientes' => count($countClientes),
             'countFuncionarios' => count($countFuncionarios),
             'countFornecedores' => count($countFornecedores),
             'countProdutos' => count($countProdutos),
+            'countPedidos' => count($countPedidos),
         );
 
         return new ViewModel($arrReturn);
