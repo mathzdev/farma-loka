@@ -36,8 +36,23 @@ class PedidoController extends AbstractController
      */
     public function cadastroAction()
     {
-        $fornecedores = $this->getService()->getRepository('Application\Entity\Fornecedor')->findAll();
-        $view = new ViewModel(array('fornecedores' => $fornecedores));
+        $produtos = $this->getService()->getRepository('Application\Entity\Produto')->findAll();
+        $clientes = $this->getService()->getRepository('Application\Entity\Cliente')->findAll();
+        $atendentes = $this->getService()->getRepository('Application\Entity\Funcionario')->findBy(array('funcaoFuncionario' => 'Atendente'));
+        $caixas = $this->getService()->getRepository('Application\Entity\Funcionario')->findBy(array('funcaoFuncionario' => 'Caixa'));
+        $gerentes = $this->getService()->getRepository('Application\Entity\Funcionario')->findBy(array('funcaoFuncionario' => 'Gerente'));
+        $entregadores = $this->getService()->getRepository('Application\Entity\Funcionario')->findBy(array('funcaoFuncionario' => 'Motoboy'));
+
+        $view = new ViewModel(
+            array(
+                'produtos' => $produtos,
+                'clientes' => $clientes,
+                'atendentes' => $atendentes,
+                'caixas' => $caixas,
+                'gerentes' => $gerentes,
+                'entregadores' => $entregadores,
+            )
+        );
 
         if ($this->isPost()) {
             $arrPost = $this->getPost();

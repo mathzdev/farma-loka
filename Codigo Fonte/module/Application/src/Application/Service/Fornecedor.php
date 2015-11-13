@@ -62,7 +62,6 @@ class Fornecedor extends AbstractService
      */
     public function editaFornecedor($arrParam, $idFornecedor)
     {
-        error_reporting(1);
         $arrUpdate = array();
 
         foreach ($arrParam as $key => $param) {

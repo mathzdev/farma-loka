@@ -1,0 +1,220 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: matheuslucio
+ * Date: 25/10/15
+ * Time: 08:54
+ */
+?>
+<script>
+    setTimeout(function() {
+        jQuery(document).ready(function() {
+            jQuery('#valor_pedido').mask('#.##0,00', {reverse: true});
+        });
+    }, 100);
+</script>
+<!-- begin PAGE TITLE AREA -->
+<!-- Use this section for each page's title and breadcrumb layout. In this example a date range picker is included within the breadcrumb. -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-title">
+            <h1>Pedidos
+                <small>Cadastrar</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active"><i class="fa fa-users"></i> Pedidos</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- end PAGE TITLE AREA -->
+
+<div class="row">
+    <!-- Horizontal Form Example -->
+    <div class="col-lg-12">
+        <?php
+        if ($this->mensagem != null)
+        {
+            echo '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Atenção!</strong> ' . $this->mensagem . '</div>';
+        }
+        ?>
+        <a href="/pedidos" class="btn btn-default btn-square">Listar Pedidos</a>
+        <br />
+        <br />
+        <div class="portlet portlet-green">
+            <div class="portlet-heading">
+                <div class="portlet-title">
+                    <h4>Cadastro de Pedido</h4>
+                </div>
+                <div class="portlet-widgets">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#horizontalFormExample"><i class="fa fa-chevron-down"></i></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div id="horizontalFormExample" class="panel-collapse collapse in">
+                <div class="portlet-body">
+                    <form class="form-horizontal" role="form" method="POST" name="upload-form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Observações</label>
+                            <div class="col-sm-10">
+                                <textarea name="obs_pedido" id="obs_pedido" placeholder="Observações" required="required" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Cliente</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="cliente_pedido" id="cliente_pedido" required="required">
+                                    <option value="">Selecione</option>
+                                    <?php foreach ($this->clientes as $cliente) { ?>
+                                        <option value="<?php echo $cliente->getIdCliente(); ?>"><?php echo $cliente->getIdCliente(); ?> - <?php echo $cliente->getNomeCliente(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Atendente</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="atendente_pedido" id="atendente_pedido" required="required">
+                                    <option value="">Selecione</option>
+                                    <?php foreach ($this->atendentes as $atendente) { ?>
+                                        <option value="<?php echo $atendente->getIdFuncionario(); ?>"><?php echo $atendente->getIdFuncionario(); ?> - <?php echo $atendente->getNomeFuncionario(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Caixa</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="caixa_pedido" id="caixa_pedido" required="required">
+                                    <option value="">Selecione</option>
+                                    <?php foreach ($this->caixas as $caixa) { ?>
+                                        <option value="<?php echo $caixa->getIdFuncionario(); ?>"><?php echo $caixa->getIdFuncionario(); ?> - <?php echo $caixa->getNomeFuncionario(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Gerente</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="gerente_pedido" id="gerente_pedido" required="required">
+                                    <option value="">Selecione</option>
+                                    <?php foreach ($this->gerentes as $gerente) { ?>
+                                        <option value="<?php echo $gerente->getIdFuncionario(); ?>"><?php echo $gerente->getIdFuncionario(); ?> - <?php echo $gerente->getNomeFuncionario(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Entregador</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="entregador_pedido" id="entregador_pedido" required="required">
+                                    <option value="">Selecione</option>
+                                    <?php foreach ($this->entregadores as $entregadore) { ?>
+                                        <option value="<?php echo $entregadore->getIdFuncionario(); ?>"><?php echo $entregadore->getIdFuncionario(); ?> - <?php echo $entregadore->getNomeFuncionario(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Produtos</label>
+                            <div class="col-sm-10" id="body_produtos">
+                                <table id="add_produtos">
+                                    <tr>
+                                        <td><b>Produto</b></td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <select class="form-control produtos_pedido" name="produtos_pedido_1" id="produtos_pedido" required="required" onclick="addSelectProduto(1)">
+                                                <option value="">Selecione</option>
+                                                <?php foreach ($this->produtos as $produto) { ?>
+                                                    <option value="<?php echo $produto->getIdProduto(); ?>"><?php echo $produto->getIdProduto(); ?> - <?php echo $produto->getNomeProduto(); ?> - R$ <?php echo $produto->getValorProduto(); ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td><b>Quantidade</b></td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <select class="form-control" name="qtd_produto_1" id="qtd_produto" required="required">
+                                                <option value="">Selecione</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input type="hidden" name="produtos_numero" id="produtos_numero" value="1" />
+                                <button type="submit" class="btn btn-default btn-square">Cadastrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.portlet -->
+    </div>
+    <!-- /.col-lg-12 (nested) -->
+    <!-- End Horizontal Form Example -->
+</div>
+
+<script>
+    /**
+     * Add an select for product
+     *
+     * @param idAdd
+     */
+    function addSelectProduto(idAdd)
+    {
+        var html;
+        var numAdd = idAdd + 1;
+
+        if (jQuery('select[name=produtos_pedido_' + numAdd + ']').length > 0) {
+            return false;
+        }
+
+        html = '<tr>' +
+            '<td><b>Produto</b></td>' +
+            '<td>&nbsp;</td>' +
+            '<td>' +
+            '<select class="form-control produtos_pedido" name="produtos_pedido_' + numAdd + '" id="produtos_pedido" onclick="addSelectProduto(' + numAdd + ')">' +
+            '<option value="">Selecione</option>' +
+            <?php foreach ($this->produtos as $produto) { ?>
+            '<option value="<?php echo $produto->getIdProduto(); ?>"><?php echo $produto->getIdProduto(); ?> - <?php echo $produto->getNomeProduto(); ?> - R$ <?php echo $produto->getValorProduto(); ?></option>' +
+            <?php } ?>
+            '</select>' +
+            '</td>' +
+            '<td>&nbsp;</td>' +
+            '<td><b>Quantidade</b></td>' +
+            '<td>&nbsp;</td>' +
+            '<td>' +
+            '<select class="form-control" name="qtd_produto_' + numAdd + '" id="qtd_produto">' +
+            '<option value="">Selecione</option>' +
+            '<option value="1">1</option>' +
+            '<option value="2">2</option>' +
+            '<option value="3">3</option>' +
+            '<option value="4">4</option>' +
+            '<option value="5">5</option>' +
+            '<option value="6">6</option>' +
+            '<option value="7">7</option>' +
+            '<option value="8">8</option>' +
+            '<option value="9">9</option>' +
+            '</select>' +
+            '</td>' +
+            '</tr>';
+
+        jQuery('#add_produtos').append(html);
+        jQuery('#produtos_numero').val(jQuery('.produtos_pedido').length);
+    }
+</script>
