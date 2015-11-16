@@ -59,10 +59,10 @@
                     <td><?php echo $cliente->getIdCliente(); ?></td>
                     <td><?php echo $cliente->getNomeCliente(); ?></td>
                     <td><?php echo $cliente->getCpfCliente(); ?></td>
-                    <td width="20%">
-                        <a href="/clientes/visualiza/<?php echo $cliente->getIdCliente(); ?>" class="btn btn-purple btn-square"><i class="fa fa-search"></i> Visualizar</a>
-                        <a href="/clientes/edita/<?php echo $cliente->getIdCliente(); ?>" class="btn btn-blue btn-square"><i class="fa fa-edit"></i> Editar</a>
-                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Apagar" class="delete_open btn btn-red btn-square" onclick="deletaCliente(<?php echo $cliente->getIdCliente(); ?>, '<?php echo $cliente->getNomeCliente(); ?>');"><i class="fa fa-trash-o"></i> Deletar</a>
+                    <td width="20%" class="tooltip-demo">
+                        <a href="/clientes/visualiza/<?php echo $cliente->getIdCliente(); ?>" class="btn btn-purple btn-square" data-toggle="tooltip" data-placement="top" title="Visualizar"><i class="fa fa-search"></i></a>
+                        <a href="/clientes/edita/<?php echo $cliente->getIdCliente(); ?>" class="btn btn-blue btn-square" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
+                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Deletar" class="delete_open btn btn-red btn-square" onclick="deletaCliente(<?php echo $cliente->getIdCliente(); ?>, '<?php echo $cliente->getNomeCliente(); ?>');" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 <?php } ?>

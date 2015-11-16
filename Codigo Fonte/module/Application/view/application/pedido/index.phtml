@@ -75,14 +75,14 @@
                                 break;
                         }
                         ?></td>
-                    <td width="20%">
-                        <a href="/pedidos/visualiza/<?php echo $pedido->getIdPedido(); ?>" class="btn btn-purple btn-square"><i class="fa fa-search"></i> Visualizar</a>
-                        <a href="/pedidos/fatura/<?php echo $pedido->getIdPedido(); ?>" class="btn btn-green btn-square"><i class="fa fa-dollar"></i> Fatura</a>
+                    <td width="20%" class="tooltip-demo">
+                        <a href="/pedidos/visualiza/<?php echo $pedido->getIdPedido(); ?>" class="btn btn-purple btn-square" data-toggle="tooltip" data-placement="top" title="Visualizar"><i class="fa fa-search"></i></a>
+                        <a href="/pedidos/fatura/<?php echo $pedido->getIdPedido(); ?>" class="btn btn-green btn-square" data-toggle="tooltip" data-placement="top" title="Fatura"><i class="fa fa-dollar"></i></a>
                         <?php
                         if ($pedido->getStatusPedido() == 1) {
-                            ?><a href="#delete" data-toggle="tooltip" data-placement="top" title="Apagar" class="delete_open btn btn-red btn-square" onclick="cancelaPedido(<?php echo $pedido->getIdPedido(); ?>, '<?php echo $pedido->getIdPedido(); ?>');"><i class="fa fa-trash-o"></i> Cancelar</a><?php
+                            ?><a href="#delete" data-toggle="tooltip" data-placement="top" title="Cancelar" class="delete_open btn btn-red btn-square" onclick="cancelaPedido(<?php echo $pedido->getIdPedido(); ?>, '<?php echo $pedido->getIdPedido(); ?>');"  data-toggle="tooltip" data-placement="top" title="Cancelar"><i class="fa fa-trash-o"></i></a><?php
                         } else {
-                            ?><a href="/pedidos/ativa/<?php echo $pedido->getIdPedido(); ?>" class="btn btn-blue btn-square"><i class="fa fa-check"></i> Ativar</a><?php
+                            ?><a href="/pedidos/ativa/<?php echo $pedido->getIdPedido(); ?>" class="btn btn-blue btn-square" data-toggle="tooltip" data-placement="top" title="Ativar"><i class="fa fa-check"></i></a><?php
                         }
                         ?>
 

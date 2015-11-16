@@ -61,10 +61,10 @@
                     <td><?php echo $funcionario->getNomeFuncionario(); ?></td>
                     <td><?php echo $funcionario->getCpfFuncionario(); ?></td>
                     <td><?php echo $funcionario->getFuncaoFuncionario(); ?></td>
-                    <td width="20%">
-                        <a href="/funcionarios/visualiza/<?php echo $funcionario->getIdFuncionario(); ?>" class="btn btn-purple btn-square"><i class="fa fa-search"></i> Visualizar</a>
-                        <a href="/funcionarios/edita/<?php echo $funcionario->getIdFuncionario(); ?>" class="btn btn-blue btn-square"><i class="fa fa-edit"></i> Editar</a>
-                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Apagar" class="delete_open btn btn-red btn-square" onclick="deletaFuncionario(<?php echo $funcionario->getIdFuncionario(); ?>, '<?php echo $funcionario->getNomeFuncionario(); ?>');"><i class="fa fa-trash-o"></i> Deletar</a>
+                    <td width="20%" class="tooltip-demo">
+                        <a href="/funcionarios/visualiza/<?php echo $funcionario->getIdFuncionario(); ?>" class="btn btn-purple btn-square" data-toggle="tooltip" data-placement="top" title="Visualizar"><i class="fa fa-search"></i></a>
+                        <a href="/funcionarios/edita/<?php echo $funcionario->getIdFuncionario(); ?>" class="btn btn-blue btn-square" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
+                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Deletar" class="delete_open btn btn-red btn-square" onclick="deletaFuncionario(<?php echo $funcionario->getIdFuncionario(); ?>, '<?php echo $funcionario->getNomeFuncionario(); ?>');" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 <?php } ?>

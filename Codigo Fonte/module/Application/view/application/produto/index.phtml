@@ -59,10 +59,10 @@
                     <td><?php echo $produto->getIdProduto(); ?></td>
                     <td><?php echo $produto->getNomeProduto(); ?></td>
                     <td>R$ <?php echo $produto->getValorProduto(); ?></td>
-                    <td width="20%">
-                        <a href="/produtos/visualiza/<?php echo $produto->getIdProduto(); ?>" class="btn btn-purple btn-square"><i class="fa fa-search"></i> Visualizar</a>
-                        <a href="/produtos/edita/<?php echo $produto->getIdProduto(); ?>" class="btn btn-blue btn-square"><i class="fa fa-edit"></i> Editar</a>
-                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Apagar" class="delete_open btn btn-red btn-square" onclick="deletaProduto(<?php echo $produto->getIdProduto(); ?>, '<?php echo $produto->getNomeProduto(); ?>');"><i class="fa fa-trash-o"></i> Deletar</a>
+                    <td width="20%" class="tooltip-demo">
+                        <a href="/produtos/visualiza/<?php echo $produto->getIdProduto(); ?>" class="btn btn-purple btn-square" data-toggle="tooltip" data-placement="top" title="Visualizar"><i class="fa fa-search"></i></a>
+                        <a href="/produtos/edita/<?php echo $produto->getIdProduto(); ?>" class="btn btn-blue btn-square" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
+                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Deletar" class="delete_open btn btn-red btn-square" onclick="deletaProduto(<?php echo $produto->getIdProduto(); ?>, '<?php echo $produto->getNomeProduto(); ?>');" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 <?php } ?>

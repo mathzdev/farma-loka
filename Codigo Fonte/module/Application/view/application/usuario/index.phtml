@@ -59,9 +59,9 @@
                     <td><?php echo $usuario->getIdUsuario(); ?></td>
                     <td><?php echo $usuario->getNomeUsuario(); ?></td>
                     <td><?php echo $usuario->getEmailUsuario(); ?></td>
-                    <td width="20%">
-                        <a href="/usuarios/edita/<?php echo $usuario->getIdUsuario(); ?>" class="btn btn-blue btn-square"><i class="fa fa-edit"></i> Editar</a>
-                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Apagar" class="delete_open btn btn-red btn-square" onclick="deletaUsuario(<?php echo $usuario->getIdUsuario(); ?>, '<?php echo $usuario->getNomeUsuario(); ?>');"><i class="fa fa-trash-o"></i> Deletar</a>
+                    <td width="20%" class="tooltip-demo">
+                        <a href="/usuarios/edita/<?php echo $usuario->getIdUsuario(); ?>" class="btn btn-blue btn-square" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></a>
+                        <a href="#delete" data-toggle="tooltip" data-placement="top" title="Deletar" class="delete_open btn btn-red btn-square" onclick="deletaUsuario(<?php echo $usuario->getIdUsuario(); ?>, '<?php echo $usuario->getNomeUsuario(); ?>');" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 <?php } ?>
